@@ -11,7 +11,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "BASE_URL", "\"hhttps://story-api.dicoding.dev/v1/\""
+        buildConfigField "String", "BASE_URL", "\"https://story-api.dicoding.dev/v1/\""
     }
 
     buildTypes {

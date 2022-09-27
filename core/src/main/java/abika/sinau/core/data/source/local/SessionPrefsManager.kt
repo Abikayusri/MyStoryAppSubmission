@@ -1,6 +1,7 @@
 package abika.sinau.core.data.source.local
 
 import abika.sinau.core.utils.BindingSessionPrefs
+import abika.sinau.core.utils.StoryConst.PREFS_HAS_LOGIN
 import abika.sinau.core.utils.StoryConst.PREFS_USER_TOKEN
 import android.content.SharedPreferences
 
@@ -13,6 +14,12 @@ class SessionPrefsManager(@BindingSessionPrefs private val preferences: SharedPr
         get() = preferences.getString(PREFS_USER_TOKEN, "") ?: ""
         set(value) {
             preferences.edit().putString(PREFS_USER_TOKEN, value).apply()
+        }
+
+    var hasLogin: Boolean
+        get() = preferences.getBoolean(PREFS_HAS_LOGIN, false)
+        set(value) {
+            preferences.edit().putBoolean(PREFS_HAS_LOGIN, value).apply()
         }
 
     fun clearUserToken() {

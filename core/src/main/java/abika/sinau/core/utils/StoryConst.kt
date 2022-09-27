@@ -7,4 +7,5 @@ package abika.sinau.core.utils
 object StoryConst {
 
     const val PREFS_USER_TOKEN = "PREFS_USER_TOKEN"
+    const val PREFS_HAS_LOGIN = "PREFS_HAS_LOGIN"
 }
