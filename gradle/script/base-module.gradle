@@ -1,0 +1,48 @@
+import dependencies.Dependencies
+
+dependencies {
+    // Coroutine
+    implementation Dependencies.Coroutines.coroutinesCore
+    implementation Dependencies.Coroutines.coroutinesAndroid
+
+    // Retrofit
+    implementation Dependencies.Retrofit.core
+    implementation Dependencies.Retrofit.gson
+
+    //OkHttp
+    implementation Dependencies.Okhttp.client
+    implementation Dependencies.Okhttp.log
+    testImplementation Dependencies.Testing.mockWebServer
+    testImplementation Dependencies.Testing.truth
+
+    // ViewModel + LiveData
+    implementation Dependencies.Build.lifecycleViewModelKtx
+    implementation Dependencies.Build.lifecycleLiveDataKtx
+    // Annotation processor
+    kapt Dependencies.Build.lifecycleCommonJava8
+
+    // Hilt
+    implementation Dependencies.DaggerHilt.hiltAndroid
+    kapt Dependencies.DaggerHilt.hiltCompiler
+
+    // Glide
+    implementation Dependencies.Glide.core
+    kapt Dependencies.Glide.compiler
+
+    // Room
+    implementation Dependencies.Room.roomRuntime
+    kapt Dependencies.Room.roomCompiler
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation Dependencies.Room.roomKtx
+    // optional - Test helpers
+    testImplementation Dependencies.Testing.roomTesting
+
+    // Interceptor
+    debugImplementation Dependencies.Chucker.core
+    releaseImplementation Dependencies.Chucker.core
+
+    implementation Dependencies.Build.recyclerView
+
+    // paging
+    implementation Dependencies.Paging.pagingRuntime
+}

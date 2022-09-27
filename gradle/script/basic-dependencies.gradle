@@ -1,0 +1,13 @@
+import dependencies.Dependencies
+
+dependencies {
+    implementation Dependencies.AndroidX.coreKtx
+    implementation Dependencies.AndroidX.appCompat
+    implementation Dependencies.Google.material
+    implementation Dependencies.Build.constraint
+    implementation Dependencies.Build.fragment
+    implementation Dependencies.Build.lifecycleExtensions
+    testImplementation Dependencies.Testing.junit4
+    androidTestImplementation Dependencies.Testing.junitAndroidExt
+    androidTestImplementation Dependencies.Testing.testEspressoCore
+}

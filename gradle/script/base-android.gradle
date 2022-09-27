@@ -1,26 +1,17 @@
-import dependencies.ModulesName
 import dependencies.Versions
 
-plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-    id 'kotlin-android'
-    id 'kotlin-parcelize'
-    id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
-}
-
 android {
-    compileSdk Versions.androidCompileSdkVersion
+    compileSdkVersion Versions.androidCompileSdkVersion
 
     defaultConfig {
-        applicationId "abika.sinau.mystoryapp"
         minSdkVersion Versions.androidMinSdkVersion
         targetSdkVersion Versions.androidTargetSdkVersion
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "BASE_URL", "\"hhttps://story-api.dicoding.dev/v1/\""
     }
 
     buildTypes {
@@ -29,21 +20,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     buildFeatures {
         viewBinding = true
     }
-}
-
-apply from: rootProject.file('gradle/script/basic-dependencies.gradle')
-apply from: rootProject.file('gradle/script/base-module.gradle')
-
-dependencies {
-    implementation project(ModulesName.core)
 }
