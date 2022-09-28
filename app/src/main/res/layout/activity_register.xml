@@ -4,14 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.splash.SplashScreenActivity">
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lavAnimation"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="false"
-        app:lottie_rawRes="@raw/lottie_splash_screen_animation" />
+    tools:context=".ui.register.RegisterActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

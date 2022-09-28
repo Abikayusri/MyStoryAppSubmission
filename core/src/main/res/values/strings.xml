@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_error_name">Name cannot be less than 3 characters!</string>
+    <string name="label_error_password">Password must be longer than 6 characters!</string>
+    <string name="label_error_email">Invalid Email!</string>
+    <string name="label_fake_name">Adam Suseno</string>
+    <string name="label_fake_password">password</string>
+    <string name="label_fake_email">email@tester.com</string>
+</resources>

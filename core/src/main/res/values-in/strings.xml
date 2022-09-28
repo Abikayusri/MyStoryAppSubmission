@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_error_name">Nama tidak boleh kurang dari 3 karakter!</string>
+    <string name="label_error_password">Password harus lebih dari 6 karakter!</string>
+    <string name="label_error_email">Email Tidak Valid!</string>
+    <string name="label_fake_name">Adam Suseno</string>
+    <string name="label_fake_password">password</string>
+    <string name="label_fake_email">email@tester.com</string>
+</resources>

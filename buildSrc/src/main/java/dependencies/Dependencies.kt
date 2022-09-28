@@ -143,4 +143,9 @@ object Dependencies {
         private const val sqliteVersion = "2.1.0"
         const val sqlite = "androidx.sqlite:sqlite-ktx:$sqliteVersion"
     }
+
+    object Lottie {
+        private const val lottieVersion = "3.4.0"
+        const val lottie = "com.airbnb.android:lottie:$lottieVersion"
+    }
 }

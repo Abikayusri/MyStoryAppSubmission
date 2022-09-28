@@ -18,7 +18,7 @@ import javax.inject.Inject
  * @author by Abika Chairul Yusri on 9/27/2022
  */
 @HiltViewModel
-class AuthenticationViewModel @Inject constructor(
+class LoginViewModel @Inject constructor(
     private val usecase: StoryAppUsecase
 ): ViewModel() {
     private val _resultLogin = MutableLiveData<Resource<ResponseWrapper<LoginResultResponse>>>()

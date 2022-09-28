@@ -45,4 +45,7 @@ dependencies {
 
     // paging
     implementation Dependencies.Paging.pagingRuntime
+
+    // lottie
+    implementation Dependencies.Lottie.lottie
 }

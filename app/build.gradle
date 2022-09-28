@@ -46,4 +46,7 @@ apply from: rootProject.file('gradle/script/base-module.gradle')
 
 dependencies {
     implementation project(ModulesName.core)
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }
