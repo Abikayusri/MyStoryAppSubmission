@@ -7,7 +7,7 @@ import abika.sinau.core.data.source.remote.request.LoginRequest
 import abika.sinau.core.data.source.remote.request.RegisterRequest
 import abika.sinau.core.data.source.remote.request.StoryQuery
 import abika.sinau.core.data.source.remote.response.LoginResultResponse
-import abika.sinau.core.data.source.remote.response.ResponseWrapper
+import abika.sinau.core.data.source.remote.response.BaseResponseWrapper
 import abika.sinau.core.data.source.remote.response.StoryListResponse
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -24,15 +24,11 @@ class RemoteDataSourceImpl(
     private val apiService: ApiService
 ) : RemoteDataSource {
 
-    override suspend fun postRegister(request: RegisterRequest): Response<ResponseWrapper<Unit>> {
+    override suspend fun postRegister(request: RegisterRequest): Response<BaseResponseWrapper<Unit>> {
         return apiService.postRegister(request)
     }
-    override suspend fun postLogin(request: LoginRequest): Response<ResponseWrapper<LoginResultResponse>> {
+    override suspend fun postLogin(request: LoginRequest): Response<BaseResponseWrapper<LoginResultResponse>> {
         return apiService.postLogin(request)
-    }
-
-    override suspend fun getListStory(): Response<ResponseWrapper<List<StoryListResponse>>> {
-        return apiService.getStories()
     }
 
     override fun getListStoryPaging(query: StoryQuery): Flow<PagingData<StoryListResponse>> {
@@ -46,11 +42,11 @@ class RemoteDataSourceImpl(
         }).flow
     }
 
-    override suspend fun postAddStoryAsUser(request: AddStoryRequest): Response<ResponseWrapper<Unit>> {
+    override suspend fun postAddStoryAsUser(request: AddStoryRequest): Response<BaseResponseWrapper<Unit>> {
         return apiService.postAddStoryAsUser(request)
     }
 
-    override suspend fun postAddStoryAsGuest(request: AddStoryRequest): Response<ResponseWrapper<Unit>> {
+    override suspend fun postAddStoryAsGuest(request: AddStoryRequest): Response<BaseResponseWrapper<Unit>> {
         return apiService.postAddStoryAsGuest(request)
     }
 

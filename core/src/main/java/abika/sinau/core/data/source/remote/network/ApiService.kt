@@ -3,9 +3,8 @@ package abika.sinau.core.data.source.remote.network
 import abika.sinau.core.data.source.remote.request.AddStoryRequest
 import abika.sinau.core.data.source.remote.request.LoginRequest
 import abika.sinau.core.data.source.remote.request.RegisterRequest
+import abika.sinau.core.data.source.remote.response.BaseResponseWrapper
 import abika.sinau.core.data.source.remote.response.LoginResultResponse
-import abika.sinau.core.data.source.remote.response.PagingResponseWrapper
-import abika.sinau.core.data.source.remote.response.ResponseWrapper
 import abika.sinau.core.data.source.remote.response.StoryListResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -22,29 +21,26 @@ interface ApiService {
     @POST("register")
     suspend fun postRegister(
         @Body registerRequest: RegisterRequest
-    ): Response<ResponseWrapper<Unit>>
+    ): Response<BaseResponseWrapper<Unit>>
 
     @POST("login")
     suspend fun postLogin(
         @Body loginRequest: LoginRequest
-    ): Response<ResponseWrapper<LoginResultResponse>>
-
-    @GET("stories")
-    suspend fun getStories(): Response<ResponseWrapper<List<StoryListResponse>>>
+    ): Response<BaseResponseWrapper<LoginResultResponse>>
 
     @GET("stories")
     suspend fun getStoriesPagination(
         @QueryMap query: Map<String, @JvmSuppressWildcards Any>
-    ): Response<PagingResponseWrapper<StoryListResponse>>
+    ): Response<BaseResponseWrapper<StoryListResponse>>
 
     @POST("stories")
     suspend fun postAddStoryAsUser(
         @Body addStoryRequest: AddStoryRequest
-    ): Response<ResponseWrapper<Unit>>
+    ): Response<BaseResponseWrapper<Unit>>
 
     @POST("stories/guest")
     suspend fun postAddStoryAsGuest(
         @Body addStoryRequest: AddStoryRequest
-    ): Response<ResponseWrapper<Unit>>
+    ): Response<BaseResponseWrapper<Unit>>
 
 }

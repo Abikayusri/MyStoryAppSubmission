@@ -6,7 +6,7 @@ import abika.sinau.core.data.source.remote.request.LoginRequest
 import abika.sinau.core.data.source.remote.request.RegisterRequest
 import abika.sinau.core.data.source.remote.request.StoryQuery
 import abika.sinau.core.data.source.remote.response.LoginResultResponse
-import abika.sinau.core.data.source.remote.response.ResponseWrapper
+import abika.sinau.core.data.source.remote.response.BaseResponseWrapper
 import abika.sinau.core.data.source.remote.response.StoryListResponse
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
@@ -16,10 +16,9 @@ import kotlinx.coroutines.flow.Flow
  * @author by Abika Chairul Yusri on 9/26/2022
  */
 interface StoryAppRepository {
-    suspend fun postRegister(request: RegisterRequest): Resource<ResponseWrapper<Unit>>
-    suspend fun postLogin(request: LoginRequest): Resource<ResponseWrapper<LoginResultResponse>>
-    suspend fun getListStory(): Resource<ResponseWrapper<List<StoryListResponse>>>
+    suspend fun postRegister(request: RegisterRequest): Resource<BaseResponseWrapper<Unit>>
+    suspend fun postLogin(request: LoginRequest): Resource<BaseResponseWrapper<LoginResultResponse>>
     fun getListStoryPaging(query: StoryQuery): Flow<PagingData<StoryListResponse>>
-    suspend fun postAddStoryAsUser(request: AddStoryRequest): Resource<ResponseWrapper<Unit>>
-    suspend fun postAddStoryAsGuest(request: AddStoryRequest): Resource<ResponseWrapper<Unit>>
+    suspend fun postAddStoryAsUser(request: AddStoryRequest): Resource<BaseResponseWrapper<Unit>>
+    suspend fun postAddStoryAsGuest(request: AddStoryRequest): Resource<BaseResponseWrapper<Unit>>
 }

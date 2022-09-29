@@ -7,7 +7,7 @@ import abika.sinau.core.utils.DateUtils.convertDateFromTo
 import abika.sinau.core.utils.StoryConst
 import abika.sinau.core.utils.base.BaseActivity
 import abika.sinau.core.utils.loadImage
-import abika.sinau.mystoryapp.R
+import abika.sinau.core.R
 import abika.sinau.mystoryapp.databinding.ActivityDetailStoryBinding
 import android.view.LayoutInflater
 import dagger.hilt.android.AndroidEntryPoint

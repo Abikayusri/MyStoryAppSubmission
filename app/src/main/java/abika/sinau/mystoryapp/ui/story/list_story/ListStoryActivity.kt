@@ -5,7 +5,6 @@ import abika.sinau.core.data.source.remote.response.StoryListResponse
 import abika.sinau.core.utils.StoryConst
 import abika.sinau.core.utils.base.BaseViewModelActivity
 import abika.sinau.core.utils.gone
-import abika.sinau.core.utils.toastShort
 import abika.sinau.core.utils.visible
 import abika.sinau.mystoryapp.databinding.ActivityListStoryBinding
 import abika.sinau.mystoryapp.ui.authentication.login.LoginActivity
@@ -24,7 +23,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class ListStoryActivity : BaseViewModelActivity<ListStoryViewModel, ActivityListStoryBinding>() {
 
-    private val storyAdapter: ListStoryAdapter by lazy { ListStoryAdapter(this) }
+    private val storyAdapter: ListStoryAdapter by lazy { ListStoryAdapter() }
 
     override val viewModelClass: Class<ListStoryViewModel>
         get() = ListStoryViewModel::class.java
@@ -80,5 +79,10 @@ class ListStoryActivity : BaseViewModelActivity<ListStoryViewModel, ActivityList
                 finishAffinity()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        storyAdapter.refresh()
     }
 }

@@ -1,15 +1,12 @@
 package abika.sinau.mystoryapp.ui.story.list_story
 
+import abika.sinau.core.R
 import abika.sinau.core.data.source.remote.response.StoryListResponse
 import abika.sinau.core.utils.DateUtils.DD_MMMM_YYYY_HH_MM
-import abika.sinau.core.utils.DateUtils.DD_MMM_YYYY
-import abika.sinau.core.utils.DateUtils.UTCT_FORMAT_3
 import abika.sinau.core.utils.DateUtils.UTCT_FORMAT_4
 import abika.sinau.core.utils.DateUtils.convertDateFromTo
 import abika.sinau.core.utils.loadImage
-import abika.sinau.mystoryapp.R
 import abika.sinau.mystoryapp.databinding.ItemListStoryBinding
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -20,9 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * @author by Abika Chairul Yusri on 9/28/2022
  */
-class ListStoryAdapter(
-    private val context: Context
-) : PagingDataAdapter<StoryListResponse, ListStoryAdapter.ListStoryViewHolder>(
+class ListStoryAdapter : PagingDataAdapter<StoryListResponse, ListStoryAdapter.ListStoryViewHolder>(
     ListStoryDiffUtil
 ) {
     private var callbacks: OnClickListener? = null
