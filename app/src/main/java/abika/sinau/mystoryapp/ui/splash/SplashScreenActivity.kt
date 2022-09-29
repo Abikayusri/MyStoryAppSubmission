@@ -1,43 +1,32 @@
 package abika.sinau.mystoryapp.ui.splash
 
-import abika.sinau.core.data.source.local.SessionPrefsManager
-import abika.sinau.core.utils.SessionPrefs
+import abika.sinau.core.utils.base.BaseActivity
 import abika.sinau.core.utils.gone
-import abika.sinau.core.utils.toastShort
 import abika.sinau.core.utils.visible
 import abika.sinau.mystoryapp.databinding.ActivitySplashScreenBinding
 import abika.sinau.mystoryapp.ui.authentication.login.LoginActivity
 import abika.sinau.mystoryapp.ui.story.list_story.ListStoryActivity
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @SuppressLint("CustomSplashScreen")
 @AndroidEntryPoint
-class SplashScreenActivity : AppCompatActivity() {
+class SplashScreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
 
-    @Inject
-    @SessionPrefs
-    lateinit var sessionPrefs: SessionPrefsManager
+    override fun inflateLayout(layoutInflater: LayoutInflater): ActivitySplashScreenBinding {
+        return ActivitySplashScreenBinding.inflate(layoutInflater)
+    }
 
-    private lateinit var binding: ActivitySplashScreenBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivitySplashScreenBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+    override fun setupViews() {
         checkPrefs()
     }
 
     private fun checkPrefs() {
         val hasLogin = sessionPrefs.hasLogin
-        toastShort("hasLogin: $hasLogin")
 
         showAnimation()
 

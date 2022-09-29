@@ -50,7 +50,6 @@ class ListStoryActivity : BaseViewModelActivity<ListStoryViewModel, ActivityList
 
             storyAdapter.setOnItemClickListener(object : ListStoryAdapter.OnClickListener {
                 override fun onClickItem(item: StoryListResponse) {
-                    toastShort("Menekan: ${item.name}")
                     val intent = Intent(this@ListStoryActivity, DetailStoryActivity::class.java)
                     intent.putExtra(StoryConst.EXTRA_PARCELABLE_USER, item)
                     startActivity(intent)
