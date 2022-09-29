@@ -19,6 +19,7 @@ interface StoryAppRepository {
     suspend fun postRegister(request: RegisterRequset): Resource<ResponseWrapper<Unit>>
     suspend fun postLogin(request: LoginRequest): Resource<ResponseWrapper<LoginResultResponse>>
     suspend fun getListStory(): Resource<ResponseWrapper<List<StoryListResponse>>>
+    fun getListStoryPaging(query: StoryQuery): Flow<PagingData<StoryListResponse>>
     suspend fun postAddStoryAsUser(request: AddStoryRequest): Resource<ResponseWrapper<Unit>>
     suspend fun postAddStoryAsGuest(request: AddStoryRequest): Resource<ResponseWrapper<Unit>>
 }

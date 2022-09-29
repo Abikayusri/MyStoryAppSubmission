@@ -4,10 +4,13 @@ import abika.sinau.core.data.Resource
 import abika.sinau.core.data.source.remote.request.AddStoryRequest
 import abika.sinau.core.data.source.remote.request.LoginRequest
 import abika.sinau.core.data.source.remote.request.RegisterRequset
+import abika.sinau.core.data.source.remote.request.StoryQuery
 import abika.sinau.core.data.source.remote.response.LoginResultResponse
 import abika.sinau.core.data.source.remote.response.ResponseWrapper
 import abika.sinau.core.data.source.remote.response.StoryListResponse
 import abika.sinau.core.domain.repository.StoryAppRepository
+import androidx.paging.PagingData
+import kotlinx.coroutines.flow.Flow
 
 
 /**
@@ -26,6 +29,10 @@ class StoryAppUsecaseImpl(
 
     override suspend fun getListStory(): Resource<ResponseWrapper<List<StoryListResponse>>> {
         return repository.getListStory()
+    }
+
+    override fun getListStoryPaging(query: StoryQuery): Flow<PagingData<StoryListResponse>> {
+        return repository.getListStoryPaging(query)
     }
 
     override suspend fun postAddStoryAsUser(request: AddStoryRequest): Resource<ResponseWrapper<Unit>> {

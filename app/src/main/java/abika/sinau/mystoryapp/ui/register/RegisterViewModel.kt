@@ -2,6 +2,7 @@ package abika.sinau.mystoryapp.ui.register
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 
 /**
@@ -9,5 +10,5 @@ import dagger.hilt.android.lifecycle.HiltViewModel
  */
 
 @HiltViewModel
-class RegisterViewModel : ViewModel() {
+class RegisterViewModel @Inject constructor() : ViewModel() {
 }

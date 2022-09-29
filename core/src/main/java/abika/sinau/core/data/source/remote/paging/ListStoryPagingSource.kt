@@ -5,6 +5,7 @@ import abika.sinau.core.data.source.remote.request.StoryQuery
 import abika.sinau.core.data.source.remote.response.StoryListResponse
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import timber.log.Timber
 
 
 /**
@@ -14,11 +15,9 @@ class ListStoryPagingSource(
     private val query: StoryQuery,
     private val apiService: ApiService
 ) : PagingSource<Int, StoryListResponse>() {
+
     override fun getRefreshKey(state: PagingState<Int, StoryListResponse>): Int? {
-        return state.anchorPosition?.let {
-            state.closestPageToPosition(it)?.prevKey?.plus(1)
-                ?: state.closestPageToPosition(it)?.nextKey?.minus(1)
-        }
+        return null
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, StoryListResponse> {
@@ -28,6 +27,9 @@ class ListStoryPagingSource(
         return try {
             val response = apiService.getStoriesPagination(query.toMap())
             val result = response.body()?.loginResult
+
+            Timber.e("Result: $result")
+            Timber.d("Result: $result")
 
             LoadResult.Page(
                 data = result!!,

@@ -45,8 +45,8 @@
         android:id="@+id/lavAnimations"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:lottie_autoPlay="true"
         app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
         app:lottie_loop="false"
         app:lottie_rawRes="@raw/lottie_loading_animation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

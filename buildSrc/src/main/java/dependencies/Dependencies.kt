@@ -103,7 +103,6 @@ object Dependencies {
         private const val mockWebServerVersion = "4.9.3"
         const val mockWebServer = "com.squareup.okhttp3:mockwebserver:$mockWebServerVersion"
 
-
         const val hiltTesting = "com.google.dagger:hilt-android-testing:${DaggerHilt.version}"
 
         private const val testRunnerVersion = "1.4.0"
@@ -147,5 +146,10 @@ object Dependencies {
     object Lottie {
         private const val lottieVersion = "3.4.0"
         const val lottie = "com.airbnb.android:lottie:$lottieVersion"
+    }
+
+    object Timber {
+        private const val timberVersion = "5.0.1"
+        const val timber = "com.jakewharton.timber:timber:$timberVersion"
     }
 }

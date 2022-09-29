@@ -15,8 +15,8 @@ class AuthInterceptor @Inject constructor(
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val userToken =
-            if (sharedPrefs.userToken.isEmpty()) "Bearer ${sharedPrefs.userToken}" else ""
+        val userToken: String =
+            if (sharedPrefs.userToken.isNotEmpty()) "Bearer ${sharedPrefs.userToken}" else ""
 
         val request = chain.request().newBuilder()
             .header("Authorization", userToken)

@@ -3,4 +3,18 @@
     <color name="blue">#03A9F4</color>
     <color name="gray">#A9A8AA</color>
     <color name="red">#CC3636</color>
+    <color name="jade">#00A378</color>
+    <color name="jade_highlighted">#54d5a7</color>
+    <color name="granny_smith_Apple">#96E6A1</color>
+    <color name="black_squeeze">#EDF8F6</color>
+    <color name="whisper">#FDFDFE</color>
+    <color name="jaffa">#F58736</color>
+    <color name="jaffa_2">#F58636</color>
+    <color name="colorPrimary">#51bcd6</color>
+    <color name="colorAccent">@color/soft_blue</color>
+    <color name="soft_blue">#5983f0</color>
+    <color name="black">#000000</color>
+    <color name="color_neutral5">#5B6268</color>
+    <color name="color_neutral7">#7B838A</color>
+    <color name="color_neutral9">#9CA3AA</color>
 </resources>

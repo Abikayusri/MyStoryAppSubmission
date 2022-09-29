@@ -7,13 +7,13 @@ package abika.sinau.core.data.source.remote.request
 data class StoryQuery(
     var page: Int = 1,
     var size: Int = 10,
-    var location: Int = 1
-){
+    var location: Double? = null
+) {
     fun toMap(): Map<String, Any> {
         val queryMap = HashMap<String, Any>()
         queryMap["page"] = page
         queryMap["size"] = size
-        queryMap["location"] = location
+        if (location != null) queryMap["location"] = location ?: 0.0
 
         return queryMap
     }

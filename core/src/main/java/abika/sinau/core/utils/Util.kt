@@ -61,9 +61,11 @@ fun snackBarLong(view: View, msg: String) {
     Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show()
 }
 
-internal fun ImageView.loadImage(url: String) {
+fun ImageView.loadImage(url: String, placeholder: Int, error: Int) {
     Glide
         .with(this)
         .load(url)
+        .error(error)
+        .placeholder(placeholder)
         .into(this)
 }

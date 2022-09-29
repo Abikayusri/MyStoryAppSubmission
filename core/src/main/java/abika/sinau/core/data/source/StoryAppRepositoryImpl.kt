@@ -36,6 +36,10 @@ class StoryAppRepositoryImpl(
         return responseToResources(remoteDataSource.getListStory())
     }
 
+    override fun getListStoryPaging(query: StoryQuery): Flow<PagingData<StoryListResponse>> {
+        return remoteDataSource.getListStoryPaging(query)
+    }
+
     override suspend fun postAddStoryAsUser(request: AddStoryRequest): Resource<ResponseWrapper<Unit>> {
         return responseToResources(remoteDataSource.postAddStoryAsUser(request))
     }
