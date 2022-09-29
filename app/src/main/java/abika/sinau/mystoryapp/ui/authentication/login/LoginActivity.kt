@@ -1,4 +1,4 @@
-package abika.sinau.mystoryapp.ui.authentication
+package abika.sinau.mystoryapp.ui.authentication.login
 
 import abika.sinau.core.data.Resource
 import abika.sinau.core.data.source.remote.request.LoginRequest
@@ -9,8 +9,8 @@ import abika.sinau.core.utils.getTextString
 import abika.sinau.core.utils.gone
 import abika.sinau.core.utils.visible
 import abika.sinau.mystoryapp.databinding.ActivityLoginBinding
-import abika.sinau.mystoryapp.ui.list_story.ListStoryActivity
-import abika.sinau.mystoryapp.ui.register.RegisterActivity
+import abika.sinau.mystoryapp.ui.authentication.register.RegisterActivity
+import abika.sinau.mystoryapp.ui.story.list_story.ListStoryActivity
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
@@ -39,8 +39,10 @@ class LoginActivity :
                 when (response) {
                     is Resource.Success -> {
                         hideAnimation()
+                        val dataLogin = response.data?.loginResult
                         sessionPrefs.hasLogin = true
-                        sessionPrefs.userToken = response.data?.loginResult?.token.toString()
+                        sessionPrefs.userToken = dataLogin?.token.toString()
+                        sessionPrefs.userName = dataLogin?.name.toString()
 
                         startActivity(
                             Intent(

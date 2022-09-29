@@ -1,4 +1,4 @@
-package abika.sinau.mystoryapp.ui.list_story
+package abika.sinau.mystoryapp.ui.story.list_story
 
 import abika.sinau.core.data.source.remote.RemoteDataSource
 import abika.sinau.core.data.source.remote.request.StoryQuery
@@ -10,7 +10,6 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -29,18 +28,6 @@ class ListStoryViewModel @Inject constructor(
         val query = StoryQuery(
             location = location
         )
-        val dataUseCase = usecase.getListStoryPaging(query).cachedIn(viewModelScope)
-        Timber.e("dataUsecase: $dataUseCase")
-        return dataUseCase
-    }
-
-    fun getListStoryPagings(
-        location: Double? = 0.0
-    ): Flow<PagingData<StoryListResponse>> {
-        val query = StoryQuery(
-            location = location
-        )
-
-        return remoteDataSouce.getListStoryPaging(query).cachedIn(viewModelScope)
+        return usecase.getListStoryPaging(query).cachedIn(viewModelScope)
     }
 }

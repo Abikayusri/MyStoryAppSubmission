@@ -1,17 +1,20 @@
-package abika.sinau.mystoryapp.ui.list_story
+package abika.sinau.mystoryapp.ui.story.list_story
 
 import abika.sinau.core.data.source.remote.response.StoryListResponse
+import abika.sinau.core.utils.DateUtils.DD_MMMM_YYYY_HH_MM
+import abika.sinau.core.utils.DateUtils.DD_MMM_YYYY
+import abika.sinau.core.utils.DateUtils.UTCT_FORMAT_3
+import abika.sinau.core.utils.DateUtils.UTCT_FORMAT_4
+import abika.sinau.core.utils.DateUtils.convertDateFromTo
 import abika.sinau.core.utils.loadImage
 import abika.sinau.mystoryapp.R
 import abika.sinau.mystoryapp.databinding.ItemListStoryBinding
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import timber.log.Timber
 
 
 /**
@@ -55,8 +58,6 @@ class ListStoryAdapter(
         private val binding: ItemListStoryBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: StoryListResponse) {
-            Timber.e("Data Story: $item")
-            Toast.makeText(context, "Datanya: $item", Toast.LENGTH_SHORT).show()
             binding.apply {
                 tvItemName.text = item.name
                 ivItemPhoto.loadImage(
@@ -64,6 +65,12 @@ class ListStoryAdapter(
                     R.mipmap.img_placeholder,
                     R.mipmap.img_placeholder
                 )
+                tvItemDate.text =
+                    convertDateFromTo(item.createdAt, UTCT_FORMAT_4, DD_MMMM_YYYY_HH_MM)
+
+                root.setOnClickListener {
+                    callbacks?.onClickItem(item)
+                }
             }
         }
     }

@@ -1,4 +1,4 @@
-package abika.sinau.mystoryapp.ui.authentication
+package abika.sinau.mystoryapp.ui.authentication.login
 
 import abika.sinau.core.data.Resource
 import abika.sinau.core.data.source.remote.request.LoginRequest

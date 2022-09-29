@@ -11,6 +11,6 @@ data class PagingResponseWrapper<T : Any?>(
     val error: String,
     @SerializedName("message")
     val message: String,
-    @SerializedName("loginResult")
-    val loginResult: List<T>? = null
+    @SerializedName("listStory")
+    val listStory: List<T>? = null
 )

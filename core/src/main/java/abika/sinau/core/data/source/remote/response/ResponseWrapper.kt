@@ -14,11 +14,3 @@ data class ResponseWrapper<T : Any?>(
     @SerializedName("loginResult")
     val loginResult: T? = null
 )
-
-//"error": false,
-//"message": "success",
-//"loginResult": {
-//    "userId": "user-8Q_icPhX3SqAb3sI",
-//    "name": "Abika",
-//    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLThRX2ljUGhYM1NxQWIzc0kiLCJpYXQiOjE2NjQyNTUyNTR9.O7Qq2y764dp1nSrqOGoSXqSuflo3albY47eekqVS0EI"
-//}

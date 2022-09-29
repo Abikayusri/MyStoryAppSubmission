@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.list_story.ListStoryActivity">
+    tools:context=".ui.story.list_story.ListStoryActivity">
 
     <include
         android:id="@+id/inclAppBar"
@@ -44,6 +44,6 @@
         android:layout_height="match_parent"
         app:lottie_autoPlay="true"
         app:layout_constraintTop_toTopOf="parent"
-        app:lottie_loop="false"
+        app:lottie_loop="true"
         app:lottie_rawRes="@raw/lottie_loading_animation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

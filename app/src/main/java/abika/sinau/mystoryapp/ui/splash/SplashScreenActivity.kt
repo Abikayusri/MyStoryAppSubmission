@@ -6,8 +6,8 @@ import abika.sinau.core.utils.gone
 import abika.sinau.core.utils.toastShort
 import abika.sinau.core.utils.visible
 import abika.sinau.mystoryapp.databinding.ActivitySplashScreenBinding
-import abika.sinau.mystoryapp.ui.authentication.LoginActivity
-import abika.sinau.mystoryapp.ui.list_story.ListStoryActivity
+import abika.sinau.mystoryapp.ui.authentication.login.LoginActivity
+import abika.sinau.mystoryapp.ui.story.list_story.ListStoryActivity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle

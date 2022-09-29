@@ -12,4 +12,5 @@
     <string name="label_dont_have_account">Belum punya akun? Daftar di sini!</string>
     <string name="label_register_success">Pendaftaran Berhasil!</string>
     <string name="label_register_failed">Pendaftaran Gagal!</string>
+    <string name="label_user_welcome">Selamat Datang, %s!</string>
 </resources>
