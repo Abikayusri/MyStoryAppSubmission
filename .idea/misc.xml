@@ -3,15 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/Me/Dicoding/In Course/Intermediate/Submission-1/MyStoryApp/app/src/main/res/drawable-v24/bg_rounded_button_primary.xml" value="0.2465" />
         <entry key="..\:/AndroidStudioProjects/Me/Dicoding/In Course/Intermediate/Submission-1/MyStoryApp/app/src/main/res/drawable/bg_custom_edit_text.xml" value="0.236" />
         <entry key="..\:/AndroidStudioProjects/Me/Dicoding/In Course/Intermediate/Submission-1/MyStoryApp/app/src/main/res/drawable/bg_custom_edit_text_error.xml" value="0.236" />
+        <entry key="..\:/AndroidStudioProjects/Me/Dicoding/In Course/Intermediate/Submission-1/MyStoryApp/app/src/main/res/drawable/bg_rounded_button_primary.xml" value="0.2465" />
         <entry key="..\:/AndroidStudioProjects/Me/Dicoding/In Course/Intermediate/Submission-1/MyStoryApp/app/src/main/res/drawable/ic_arrow_back_black.xml" value="0.2465" />
         <entry key="..\:/AndroidStudioProjects/Me/Dicoding/In Course/Intermediate/Submission-1/MyStoryApp/app/src/main/res/drawable/ic_close_black.xml" value="0.2465" />
         <entry key="..\:/AndroidStudioProjects/Me/Dicoding/In Course/Intermediate/Submission-1/MyStoryApp/app/src/main/res/drawable/ic_logout_black.xml" value="0.2465" />
         <entry key="..\:/AndroidStudioProjects/Me/Dicoding/In Course/Intermediate/Submission-1/MyStoryApp/app/src/main/res/layout/activity_authentication.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/Me/Dicoding/In Course/Intermediate/Submission-1/MyStoryApp/app/src/main/res/layout/activity_list_story.xml" value="0.25416666666666665" />
-        <entry key="..\:/AndroidStudioProjects/Me/Dicoding/In Course/Intermediate/Submission-1/MyStoryApp/app/src/main/res/layout/activity_login.xml" value="0.24010416666666667" />
-        <entry key="..\:/AndroidStudioProjects/Me/Dicoding/In Course/Intermediate/Submission-1/MyStoryApp/app/src/main/res/layout/activity_register.xml" value="0.22604166666666667" />
+        <entry key="..\:/AndroidStudioProjects/Me/Dicoding/In Course/Intermediate/Submission-1/MyStoryApp/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/AndroidStudioProjects/Me/Dicoding/In Course/Intermediate/Submission-1/MyStoryApp/app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="..\:/AndroidStudioProjects/Me/Dicoding/In Course/Intermediate/Submission-1/MyStoryApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.24010416666666667" />
         <entry key="..\:/AndroidStudioProjects/Me/Dicoding/In Course/Intermediate/Submission-1/MyStoryApp/app/src/main/res/layout/item_list_story.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/Me/Dicoding/In Course/Intermediate/Submission-1/MyStoryApp/app/src/main/res/layout/layout_appbar.xml" value="0.4" />

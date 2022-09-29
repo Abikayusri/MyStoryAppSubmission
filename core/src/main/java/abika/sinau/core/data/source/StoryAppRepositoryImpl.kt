@@ -2,18 +2,15 @@ package abika.sinau.core.data.source
 
 import abika.sinau.core.data.Resource
 import abika.sinau.core.data.source.remote.RemoteDataSource
-import abika.sinau.core.data.source.remote.paging.ListStoryPagingSource
 import abika.sinau.core.data.source.remote.request.AddStoryRequest
 import abika.sinau.core.data.source.remote.request.LoginRequest
-import abika.sinau.core.data.source.remote.request.RegisterRequset
+import abika.sinau.core.data.source.remote.request.RegisterRequest
 import abika.sinau.core.data.source.remote.request.StoryQuery
 import abika.sinau.core.data.source.remote.response.LoginResultResponse
 import abika.sinau.core.data.source.remote.response.ResponseWrapper
 import abika.sinau.core.data.source.remote.response.StoryListResponse
 import abika.sinau.core.domain.repository.StoryAppRepository
 import abika.sinau.core.utils.responseToResources
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 
@@ -24,7 +21,7 @@ import kotlinx.coroutines.flow.Flow
 class StoryAppRepositoryImpl(
     private val remoteDataSource: RemoteDataSource
 ) : StoryAppRepository {
-    override suspend fun postRegister(request: RegisterRequset): Resource<ResponseWrapper<Unit>> {
+    override suspend fun postRegister(request: RegisterRequest): Resource<ResponseWrapper<Unit>> {
         return responseToResources(remoteDataSource.postRegister(request))
     }
 

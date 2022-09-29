@@ -26,4 +26,19 @@
     <style name="TextViewStyle" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/black</item>
     </style>
+
+    <style name="ButtonPrimaryFull" parent="Widget.AppCompat.Button">
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/bg_rounded_button_primary</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
 </resources>

@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">MyStoryApp</string>
-    <string name="button_add">Button Add</string>
-    <string name="button_back">Button Back</string>
 </resources>

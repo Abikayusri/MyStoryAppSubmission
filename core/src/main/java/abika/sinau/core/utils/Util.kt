@@ -3,6 +3,7 @@ package abika.sinau.core.utils
 import abika.sinau.core.data.Resource
 import android.app.Activity
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -68,4 +69,8 @@ fun ImageView.loadImage(url: String, placeholder: Int, error: Int) {
         .error(error)
         .placeholder(placeholder)
         .into(this)
+}
+
+fun EditText.getTextString(): String {
+    return text.toString()
 }

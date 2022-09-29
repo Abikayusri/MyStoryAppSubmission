@@ -5,12 +5,17 @@ import abika.sinau.core.data.source.remote.request.LoginRequest
 import abika.sinau.core.utils.StoryConst.TYPE_EMAIL
 import abika.sinau.core.utils.StoryConst.TYPE_PASSWORD
 import abika.sinau.core.utils.base.BaseViewModelActivity
+import abika.sinau.core.utils.getTextString
 import abika.sinau.core.utils.gone
 import abika.sinau.core.utils.visible
 import abika.sinau.mystoryapp.databinding.ActivityLoginBinding
 import abika.sinau.mystoryapp.ui.list_story.ListStoryActivity
+import abika.sinau.mystoryapp.ui.register.RegisterActivity
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -66,23 +71,47 @@ class LoginActivity :
 
     override fun setupViews() {
         binding.apply {
-            etEmail.setEditTextType(TYPE_EMAIL)
-            etPassword.setEditTextType(TYPE_PASSWORD)
+            edLoginEmail.setEditTextType(TYPE_EMAIL)
+            edLoginPassword.setEditTextType(TYPE_PASSWORD)
 
-            btnSubmit.setOnClickListener {
-                if (etEmail.isNotEmptyAndError() && etPassword.isNotEmptyAndError()) {
+            btnLoginSubmit.setOnClickListener {
+                if (edLoginEmail.isNotEmptyAndError() && edLoginPassword.isNotEmptyAndError()) {
                     val request = LoginRequest(
-                        email = etEmail.text.toString(),
-                        password = etPassword.text.toString()
+                        email = edLoginEmail.getTextString(),
+                        password = edLoginPassword.getTextString()
                     )
 
                     viewModel.loginUser(request)
-                } else if (!etPassword.isNotEmptyAndError()) {
-                    etPassword.setErrorPassword()
-                } else if (etEmail.isNotEmptyAndError()) {
-                    etEmail.setErrorEmail()
+                } else if (!edLoginPassword.isNotEmptyAndError()) {
+                    edLoginPassword.setErrorPassword()
+                } else if (edLoginEmail.isNotEmptyAndError()) {
+                    edLoginEmail.setErrorEmail()
                 }
             }
+
+            tvLoginRegister.setOnClickListener {
+                startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+            }
+        }
+
+        playAnimation()
+    }
+
+    private fun playAnimation() {
+        ObjectAnimator.ofFloat(binding.ivLoginAvatar, View.TRANSLATION_X, -30f, 30f).apply {
+            duration = 6000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
+
+        val email = ObjectAnimator.ofFloat(binding.edLoginEmail, View.ALPHA, 1f).setDuration(500)
+        val password = ObjectAnimator.ofFloat(binding.edLoginPassword, View.ALPHA, 1f).setDuration(500)
+        val submit = ObjectAnimator.ofFloat(binding.btnLoginSubmit, View.ALPHA, 1f).setDuration(500)
+        val register = ObjectAnimator.ofFloat(binding.tvLoginRegister, View.ALPHA, 1f).setDuration(500)
+
+        AnimatorSet().apply {
+            playSequentially(email, password, submit, register)
+            start()
         }
     }
 }

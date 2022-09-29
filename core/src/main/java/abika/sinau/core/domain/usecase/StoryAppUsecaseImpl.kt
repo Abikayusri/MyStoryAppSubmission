@@ -3,7 +3,7 @@ package abika.sinau.core.domain.usecase
 import abika.sinau.core.data.Resource
 import abika.sinau.core.data.source.remote.request.AddStoryRequest
 import abika.sinau.core.data.source.remote.request.LoginRequest
-import abika.sinau.core.data.source.remote.request.RegisterRequset
+import abika.sinau.core.data.source.remote.request.RegisterRequest
 import abika.sinau.core.data.source.remote.request.StoryQuery
 import abika.sinau.core.data.source.remote.response.LoginResultResponse
 import abika.sinau.core.data.source.remote.response.ResponseWrapper
@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.Flow
 class StoryAppUsecaseImpl(
     private val repository: StoryAppRepository
 ) : StoryAppUsecase {
-    override suspend fun postRegisterUseCase(request: RegisterRequset): Resource<ResponseWrapper<Unit>> {
+    override suspend fun postRegisterUseCase(request: RegisterRequest): Resource<ResponseWrapper<Unit>> {
         return repository.postRegister(request)
     }
 

@@ -4,7 +4,7 @@ import abika.sinau.core.data.source.remote.network.ApiService
 import abika.sinau.core.data.source.remote.paging.ListStoryPagingSource
 import abika.sinau.core.data.source.remote.request.AddStoryRequest
 import abika.sinau.core.data.source.remote.request.LoginRequest
-import abika.sinau.core.data.source.remote.request.RegisterRequset
+import abika.sinau.core.data.source.remote.request.RegisterRequest
 import abika.sinau.core.data.source.remote.request.StoryQuery
 import abika.sinau.core.data.source.remote.response.LoginResultResponse
 import abika.sinau.core.data.source.remote.response.ResponseWrapper
@@ -24,7 +24,7 @@ class RemoteDataSourceImpl(
     private val apiService: ApiService
 ) : RemoteDataSource {
 
-    override suspend fun postRegister(request: RegisterRequset): Response<ResponseWrapper<Unit>> {
+    override suspend fun postRegister(request: RegisterRequest): Response<ResponseWrapper<Unit>> {
         return apiService.postRegister(request)
     }
     override suspend fun postLogin(request: LoginRequest): Response<ResponseWrapper<LoginResultResponse>> {

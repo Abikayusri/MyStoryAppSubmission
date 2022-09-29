@@ -6,4 +6,10 @@
     <string name="label_fake_name">Adam Suseno</string>
     <string name="label_fake_password">password</string>
     <string name="label_fake_email">email@tester.com</string>
+    <string name="button_add">Button Add</string>
+    <string name="button_back">Button Back</string>
+    <string name="label_submit">Submit</string>
+    <string name="label_dont_have_account">Don\'t have an account yet? Register here!</string>
+    <string name="label_register_success">Register Success!</string>
+    <string name="label_register_failed">Register Failed!</string>
 </resources>

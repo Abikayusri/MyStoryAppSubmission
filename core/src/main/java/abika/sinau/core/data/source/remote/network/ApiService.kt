@@ -2,7 +2,7 @@ package abika.sinau.core.data.source.remote.network
 
 import abika.sinau.core.data.source.remote.request.AddStoryRequest
 import abika.sinau.core.data.source.remote.request.LoginRequest
-import abika.sinau.core.data.source.remote.request.RegisterRequset
+import abika.sinau.core.data.source.remote.request.RegisterRequest
 import abika.sinau.core.data.source.remote.response.LoginResultResponse
 import abika.sinau.core.data.source.remote.response.PagingResponseWrapper
 import abika.sinau.core.data.source.remote.response.ResponseWrapper
@@ -21,7 +21,7 @@ interface ApiService {
 
     @POST("register")
     suspend fun postRegister(
-        @Body registerRequest: RegisterRequset
+        @Body registerRequest: RegisterRequest
     ): Response<ResponseWrapper<Unit>>
 
     @POST("login")
