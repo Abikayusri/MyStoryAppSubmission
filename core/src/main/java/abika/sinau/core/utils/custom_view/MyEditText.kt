@@ -6,17 +6,15 @@ import abika.sinau.core.utils.StoryConst.TYPE_NAME
 import abika.sinau.core.utils.StoryConst.TYPE_PASSWORD
 import android.content.Context
 import android.graphics.Canvas
-import android.text.Editable
 import android.text.InputType
 import android.text.TextUtils
-import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.util.Patterns
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.view.setPadding
+import androidx.core.widget.addTextChangedListener
 
 
 /**
@@ -44,25 +42,21 @@ class MyEditText : AppCompatEditText {
     }
 
     private fun init() {
-        addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (editTextType == TYPE_NAME && s.toString().length < 3) {
+        addTextChangedListener(
+            onTextChanged = { data, _, _, _ ->
+                if (editTextType == TYPE_NAME && data.toString().length < 3) {
                     setErrorName()
-                } else if (editTextType == TYPE_PASSWORD && (s.toString()
-                        .isNotEmpty() && s.toString().length < 6)
+                } else if (editTextType == TYPE_PASSWORD && (data.toString()
+                        .isNotEmpty() && data.toString().length < 6)
                 ) {
                     setErrorPassword()
-                } else if (editTextType == TYPE_EMAIL && !isValidEmail(s.toString())) {
+                } else if (editTextType == TYPE_EMAIL && !isValidEmail(data.toString())) {
                     setErrorEmail()
                 } else {
                     setDefault()
                 }
             }
-
-            override fun afterTextChanged(s: Editable?) {}
-        })
+        )
 
         setDefault()
     }

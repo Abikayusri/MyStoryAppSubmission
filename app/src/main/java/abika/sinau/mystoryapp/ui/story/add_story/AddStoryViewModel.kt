@@ -1,7 +1,6 @@
 package abika.sinau.mystoryapp.ui.story.add_story
 
 import abika.sinau.core.data.Resource
-import abika.sinau.core.data.source.remote.request.AddStoryRequest
 import abika.sinau.core.data.source.remote.response.BaseResponseWrapper
 import abika.sinau.core.domain.usecase.StoryAppUsecase
 import androidx.lifecycle.LiveData
