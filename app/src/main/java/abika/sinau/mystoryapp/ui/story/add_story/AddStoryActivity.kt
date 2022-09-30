@@ -1,9 +1,13 @@
 package abika.sinau.mystoryapp.ui.story.add_story
 
+import abika.sinau.core.R
 import abika.sinau.core.data.Resource
 import abika.sinau.core.utils.StoryConst.REQUEST_CAMERA_PERMISSION
 import abika.sinau.core.utils.base.BaseViewModelActivity
+import abika.sinau.core.utils.bitmapToFile
 import abika.sinau.core.utils.createCustomTempFile
+import abika.sinau.core.utils.createFileFromContentUri
+import abika.sinau.core.utils.fileFromContentUri
 import abika.sinau.core.utils.getTextString
 import abika.sinau.core.utils.gone
 import abika.sinau.core.utils.reduceFileImage
@@ -11,11 +15,13 @@ import abika.sinau.core.utils.rotateBitmap
 import abika.sinau.core.utils.toastShort
 import abika.sinau.core.utils.uriToFile
 import abika.sinau.core.utils.visible
-import abika.sinau.core.R
 import abika.sinau.mystoryapp.databinding.ActivityAddStoryBinding
 import android.Manifest
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
+import android.os.Build
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import androidx.activity.result.contract.ActivityResultContracts
@@ -39,15 +45,59 @@ class AddStoryActivity : BaseViewModelActivity<AddStoryViewModel, ActivityAddSto
         ActivityResultContracts.StartActivityForResult()
     ) {
         if (it.resultCode == RESULT_OK) {
-            val myFile = File(currentPhotoPath)
-            getFile = myFile
-            val result = rotateBitmap(
-                BitmapFactory.decodeFile(myFile.path),
-                true
-            )
+//            val myFile: File = File(currentPhotoPath) // getCameraUri
+            val myFile: File = File(currentPhotoPath) // getCameraUri
+
+            val toBitmap: Bitmap = BitmapFactory.decodeFile(myFile.path)
+
+            val result = rotateBitmap(toBitmap, true)
+
+            val newFile: File? = bitmapToFile(toBitmap, "add_story.jpeg")
+
+
+            getFile = newFile
+//            val result = rotateBitmap(
+//                BitmapFactory.decodeFile(myFile.path),
+//                true
+//            )
 
             binding.ivAddImage.setImageBitmap(result)
         }
+    }
+
+    private val cameraResults =
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+            if (success) {
+                val cameraUri = getCameraUri()
+                getFile = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    createFileFromContentUri(cameraUri, this)
+                } else {
+                    fileFromContentUri(this, cameraUri)
+                }
+
+                binding.ivAddImage.setImageURI(cameraUri)
+            }
+        }
+
+    private fun startTakePhoto() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        intent.resolveActivity(packageManager)
+
+        createCustomTempFile(application).also {
+            currentPhotoPath = it.absolutePath
+//            val photoUri =
+//                FileProvider.getUriForFile(this, "abika.sinau.mystoryapp", it)
+
+            val photoUri = getCameraUri()
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
+            cameraResult.launch(intent)
+//            cameraResults.launch(photoUri)
+        }
+    }
+
+    private fun getCameraUri(): Uri {
+        val file = File(currentPhotoPath)
+        return FileProvider.getUriForFile(this, "abika.sinau.mystoryapp", file)
     }
 
     private val galleryResult = registerForActivityResult(
@@ -77,7 +127,12 @@ class AddStoryActivity : BaseViewModelActivity<AddStoryViewModel, ActivityAddSto
                 }
                 is Resource.Error -> {
                     hideAnimation()
-                    toastShort(getString(R.string.label_failed_create_story, response.message.toString()))
+                    toastShort(
+                        getString(
+                            R.string.label_failed_create_story,
+                            response.message.toString()
+                        )
+                    )
                 }
                 is Resource.Loading -> {
                     showAnimation()
@@ -113,12 +168,12 @@ class AddStoryActivity : BaseViewModelActivity<AddStoryViewModel, ActivityAddSto
                     if (etAddDescription.getTextString().isEmpty()) {
                         etAddDescription.error = getString(R.string.label_description_empty)
                     } else {
-                        val file = reduceFileImage(getFile as File)
+//                        val file = reduceFileImage(getFile as File)
                         val description = etAddDescription.getTextString()
                             .toRequestBody("text/plain".toMediaTypeOrNull())
-                        val requestFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+                        val requestFile = getFile!!.asRequestBody("image/jpeg".toMediaTypeOrNull())
                         val body =
-                            MultipartBody.Part.createFormData("photo", file.name, requestFile)
+                            MultipartBody.Part.createFormData("photo", getFile!!.name, requestFile)
 
                         viewModel.uploadImage(description, body)
                     }
@@ -126,19 +181,6 @@ class AddStoryActivity : BaseViewModelActivity<AddStoryViewModel, ActivityAddSto
                     toastShort(getString(R.string.label_image_empty))
                 }
             }
-        }
-    }
-
-    private fun startTakePhoto() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        intent.resolveActivity(packageManager)
-
-        createCustomTempFile(application).also {
-            val photoUri =
-                FileProvider.getUriForFile(this, "abika.sinau.mystoryapp", it)
-            currentPhotoPath = it.absolutePath
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
-            cameraResult.launch(intent)
         }
     }
 
