@@ -15,4 +15,6 @@ object StoryConst {
     const val TYPE_PASSWORD = "TYPE_PASSWORD"
 
     const val EXTRA_PARCELABLE_USER = "EXTRA_PARCELABLE_USER"
+    
+    const val REQUEST_CAMERA_PERMISSION = 666
 }

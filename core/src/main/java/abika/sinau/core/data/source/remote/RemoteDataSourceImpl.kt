@@ -13,6 +13,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 
 
@@ -42,8 +44,8 @@ class RemoteDataSourceImpl(
         }).flow
     }
 
-    override suspend fun postAddStoryAsUser(request: AddStoryRequest): Response<BaseResponseWrapper<Unit>> {
-        return apiService.postAddStoryAsUser(request)
+    override suspend fun postAddStoryAsUser(description: RequestBody, image: MultipartBody.Part): Response<BaseResponseWrapper<Unit>> {
+        return apiService.postAddStoryAsUser(image, description)
     }
 
     override suspend fun postAddStoryAsGuest(request: AddStoryRequest): Response<BaseResponseWrapper<Unit>> {

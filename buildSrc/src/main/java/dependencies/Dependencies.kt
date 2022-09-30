@@ -24,14 +24,18 @@ object Dependencies {
         private const val lifecycleExtensionVersion = "2.2.0"
         const val lifecycleViewModelKtx =
             "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
-        const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionVersion"
-        const val lifecycleLiveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
-        const val lifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
+        const val lifecycleExtensions =
+            "androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionVersion"
+        const val lifecycleLiveDataKtx =
+            "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+        const val lifecycleCommonJava8 =
+            "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
     }
 
     object Coroutines {
         private const val coroutinesVersion = "1.6.4"
-        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+        const val coroutinesCore =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
         const val coroutinesAndroid =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
     }
@@ -114,7 +118,7 @@ object Dependencies {
         private const val multidexVersion = "2.0.1"
         const val multidex = "androidx.multidex:multidex:$multidexVersion"
         const val multidexInstrument = "androidx.multidex:multidex-instrumentation:$multidexVersion"
-        
+
         private const val gsonVersion = "2.9.0"
         const val gson = "com.google.code.gson:gson:$gsonVersion"
 
@@ -129,12 +133,12 @@ object Dependencies {
         private const val chuckerVersion = "3.5.2"
         const val core = "com.github.chuckerteam.chucker:library:$chuckerVersion"
     }
-    
+
     object Paging {
         private const val pagingVersion = "3.1.1"
         const val pagingRuntime = "androidx.paging:paging-runtime-ktx:$pagingVersion"
     }
-    
+
     object Security {
         private const val sqlChiperVersion = "4.4.0"
         const val sqlChiper = "net.zetetic:android-database-sqlcipher:$sqlChiperVersion"
@@ -151,5 +155,10 @@ object Dependencies {
     object Timber {
         private const val timberVersion = "5.0.1"
         const val timber = "com.jakewharton.timber:timber:$timberVersion"
+    }
+
+    object Permissions {
+        private const val easyPermissionVersion = "3.0.0"
+        const val easyPermissions = "pub.devrel:easypermissions:$easyPermissionVersion"
     }
 }

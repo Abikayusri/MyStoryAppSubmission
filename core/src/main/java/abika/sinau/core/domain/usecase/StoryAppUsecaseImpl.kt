@@ -11,6 +11,8 @@ import abika.sinau.core.data.source.remote.response.StoryListResponse
 import abika.sinau.core.domain.repository.StoryAppRepository
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 
 /**
@@ -31,8 +33,8 @@ class StoryAppUsecaseImpl(
         return repository.getListStoryPaging(query)
     }
 
-    override suspend fun postAddStoryAsUser(request: AddStoryRequest): Resource<BaseResponseWrapper<Unit>> {
-        return repository.postAddStoryAsUser(request)
+    override suspend fun postAddStoryAsUser(description: RequestBody, image: MultipartBody.Part): Resource<BaseResponseWrapper<Unit>> {
+        return repository.postAddStoryAsUser(description, image)
     }
 
     override suspend fun postAddStoryAsGuest(request: AddStoryRequest): Resource<BaseResponseWrapper<Unit>> {

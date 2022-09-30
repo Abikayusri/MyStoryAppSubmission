@@ -13,4 +13,19 @@
     <string name="label_register_success">Register Success!</string>
     <string name="label_register_failed">Register Failed!</string>
     <string name="label_user_welcome">Welcome, %s!</string>
+    <string name="label_open_camera">Open Camera</string>
+    <string name="label_open_gallery">Open Gallery</string>
+    <string name="label_write_description">Write your description!</string>
+    <string name="label_upload">Upload</string>
+    <string name="label_add_story">Add Story</string>
+    <string name="title_logout_dialog">Are you sure you want to logout?</string>
+    <string name="label_sure">Yes</string>
+    <string name="label_no">No</string>
+
+    <string name="label_success_create_story">Success Add Story!</string>
+    <string name="label_failed_create_story">Failed Add Story!. %s</string>
+    <string name="label_description_empty">Description still empty!</string>
+    <string name="label_image_empty">Image still kosong!</string>
+    <string name="title_camera_permission">This page needs access to your camera!</string>
+
 </resources>

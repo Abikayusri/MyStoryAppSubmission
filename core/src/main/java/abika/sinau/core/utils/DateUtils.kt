@@ -22,6 +22,7 @@ object DateUtils {
     const val EE_DD_MMM_YYYY = "EE, dd MMM yyyy"
     const val DD_MMMM_YYYY = "dd MMMM yyyy"
     const val DD_MMM_YYYY = "dd MMM yyyy"
+    const val DD_MMM_YYYY_DASH = "dd-MMM-yyyy"
     const val DD_MMMM_YYYY_HH_MM = "dd MMMM yyyy | HH:mm"
     const val HH_MM = "HH:mm"
     const val MM_YYYY = "MM-yyyy"

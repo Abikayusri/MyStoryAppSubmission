@@ -13,4 +13,18 @@
     <string name="label_register_success">Pendaftaran Berhasil!</string>
     <string name="label_register_failed">Pendaftaran Gagal!</string>
     <string name="label_user_welcome">Selamat Datang, %s!</string>
+    <string name="label_open_camera">Buka Camera</string>
+    <string name="label_open_gallery">Buka Gallery</string>
+    <string name="label_write_description">Tuliskan deskripsimu!</string>
+    <string name="label_upload">Upload</string>
+    <string name="label_add_story">Tambah Story</string>
+    <string name="title_logout_dialog">Anda yakin ingin keluar?</string>
+    <string name="label_sure">Yakin</string>
+    <string name="label_no">Tidak</string>
+
+    <string name="label_success_create_story">Berhasil Menambahkan Story!</string>
+    <string name="label_failed_create_story">Gagal Menambahkan Story!. %s</string>
+    <string name="label_description_empty">Deskripsi masih kosong!</string>
+    <string name="label_image_empty">Gambar masih kosong!</string>
+    <string name="title_camera_permission">Halaman ini perlu akses ke kameramu!</string>
 </resources>

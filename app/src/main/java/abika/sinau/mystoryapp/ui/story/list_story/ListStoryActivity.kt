@@ -10,6 +10,7 @@ import abika.sinau.mystoryapp.databinding.ActivityListStoryBinding
 import abika.sinau.mystoryapp.ui.authentication.login.LoginActivity
 import abika.sinau.mystoryapp.ui.story.add_story.AddStoryActivity
 import abika.sinau.mystoryapp.ui.story.detail_story.DetailStoryActivity
+import android.app.AlertDialog
 import android.content.Intent
 import android.view.LayoutInflater
 import androidx.core.view.isVisible
@@ -74,11 +75,25 @@ class ListStoryActivity : BaseViewModelActivity<ListStoryViewModel, ActivityList
             tvAppbarTitle.text = getString(R.string.label_user_welcome, sessionPrefs.userName)
             ivAppbarLogout.visible()
             ivAppbarLogout.setOnClickListener {
-                sessionPrefs.clearUserToken()
-                startActivity(Intent(this@ListStoryActivity, LoginActivity::class.java))
-                finishAffinity()
+                showDialogLogout()
             }
         }
+    }
+
+    private fun showDialogLogout() {
+        AlertDialog.Builder(this)
+            .setMessage(getString(R.string.title_logout_dialog))
+            .setPositiveButton(getString(R.string.label_sure)) { _, _ ->
+                logoutAction()
+            }
+            .setNegativeButton(getString(R.string.label_no)) { _, _ -> }
+            .show()
+    }
+
+    private fun logoutAction() {
+        sessionPrefs.clearUserToken()
+        startActivity(Intent(this@ListStoryActivity, LoginActivity::class.java))
+        finishAffinity()
     }
 
     override fun onResume() {
