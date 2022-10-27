@@ -9,6 +9,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -51,4 +52,5 @@ dependencies {
     // Location
     implementation Dependencies.GMS.playServiceMaps
     implementation Dependencies.GMS.playServiceLocation
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 }

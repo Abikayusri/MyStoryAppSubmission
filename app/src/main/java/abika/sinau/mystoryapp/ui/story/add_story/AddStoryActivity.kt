@@ -45,8 +45,6 @@ class AddStoryActivity : BaseViewModelActivity<AddStoryViewModel, ActivityAddSto
     private lateinit var currentPhotoPath: String
 
     private var fusedLocationClient: FusedLocationProviderClient? = null
-    private lateinit var locationRequest: LocationRequest
-    private lateinit var locationCallback: LocationCallback
     private lateinit var cancellationTokenSource: CancellationTokenSource
 
     private var latitude: Double = 0.0

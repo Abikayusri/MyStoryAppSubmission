@@ -36,7 +36,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_appbar_back"
+                    android:id="@+id/btnAppbarBack"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/button_back"
@@ -45,7 +45,7 @@
                     android:visibility="visible" />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btn_appbar_close"
+                    android:id="@+id/btnAppbarClose"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/button_back"
@@ -55,7 +55,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_appbar_title"
+                android:id="@+id/tvAppbarTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -63,13 +63,13 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/iv_appbar_logout"
+                app:layout_constraintEnd_toStartOf="@+id/ivAppbarMaps"
                 app:layout_constraintStart_toEndOf="@+id/llStartAttribute"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/app_name" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_appbar_logout"
+                android:id="@+id/ivAppbarLogout"
                 android:layout_width="25dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="16dp"
@@ -79,6 +79,20 @@
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivAppbarMaps"
+                android:layout_width="25dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:src="@drawable/ic_map_black"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ivAppbarLogout"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:visibility="visible" />
 
