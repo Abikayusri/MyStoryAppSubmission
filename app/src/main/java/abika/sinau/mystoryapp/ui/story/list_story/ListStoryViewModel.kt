@@ -21,7 +21,6 @@ import javax.inject.Inject
 @HiltViewModel
 class ListStoryViewModel @Inject constructor(
     private val usecase: StoryAppUsecase,
-    private val remoteDataSouce: RemoteDataSource
 ) : ViewModel() {
 
     fun getListStoryPaging(): LiveData<PagingData<StoryListResponse>> {

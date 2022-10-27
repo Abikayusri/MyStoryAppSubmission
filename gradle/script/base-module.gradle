@@ -31,6 +31,7 @@ dependencies {
 
     // Room
     implementation Dependencies.Room.roomRuntime
+    implementation Dependencies.Room.roomPaging
     kapt Dependencies.Room.roomCompiler
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation Dependencies.Room.roomKtx
