@@ -18,7 +18,6 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -36,8 +35,8 @@ class ListStoryActivity : BaseViewModelActivity<ListStoryViewModel, ActivityList
     override fun setupObservers(lifecycleOwner: LifecycleOwner, viewModel: ListStoryViewModel) {
         lifecycleScope.launch {
             viewModel.apply {
-                getListStoryPaging().collectLatest {
-                    storyAdapter.submitData(it)
+                getListStoryPaging().observe(lifecycleOwner) {
+                    storyAdapter.submitData(lifecycle, it)
                 }
             }
         }
@@ -45,6 +44,7 @@ class ListStoryActivity : BaseViewModelActivity<ListStoryViewModel, ActivityList
 
     override fun setupViews() {
         setupToolbar()
+
         binding.apply {
             rvListStory.adapter = storyAdapter
 

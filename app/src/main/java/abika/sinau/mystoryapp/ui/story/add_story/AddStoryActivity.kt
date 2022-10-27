@@ -1,5 +1,6 @@
 package abika.sinau.mystoryapp.ui.story.add_story
 
+import abika.sinau.core.R
 import abika.sinau.core.data.Resource
 import abika.sinau.core.utils.StoryConst.REQUEST_CAMERA_PERMISSION
 import abika.sinau.core.utils.base.BaseViewModelActivity
@@ -11,16 +12,24 @@ import abika.sinau.core.utils.rotateBitmap
 import abika.sinau.core.utils.toastShort
 import abika.sinau.core.utils.uriToFile
 import abika.sinau.core.utils.visible
-import abika.sinau.core.R
 import abika.sinau.mystoryapp.databinding.ActivityAddStoryBinding
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.location.Location
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.LifecycleOwner
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.CancellationTokenSource
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -34,6 +43,14 @@ class AddStoryActivity : BaseViewModelActivity<AddStoryViewModel, ActivityAddSto
 
     private var getFile: File? = null
     private lateinit var currentPhotoPath: String
+
+    private var fusedLocationClient: FusedLocationProviderClient? = null
+    private lateinit var locationRequest: LocationRequest
+    private lateinit var locationCallback: LocationCallback
+    private lateinit var cancellationTokenSource: CancellationTokenSource
+
+    private var latitude: Double = 0.0
+    private var longitude: Double = 0.0
 
     private val cameraResult = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -77,7 +94,12 @@ class AddStoryActivity : BaseViewModelActivity<AddStoryViewModel, ActivityAddSto
                 }
                 is Resource.Error -> {
                     hideAnimation()
-                    toastShort(getString(R.string.label_failed_create_story, response.message.toString()))
+                    toastShort(
+                        getString(
+                            R.string.label_failed_create_story,
+                            response.message.toString()
+                        )
+                    )
                 }
                 is Resource.Loading -> {
                     showAnimation()
@@ -87,6 +109,10 @@ class AddStoryActivity : BaseViewModelActivity<AddStoryViewModel, ActivityAddSto
     }
 
     override fun setupViews() {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        getMyLastLocation()
+        createLocationRequest()
+
         binding.apply {
             inclAppBar.apply {
                 btnAppbarBack.setOnClickListener { finish() }
@@ -120,7 +146,7 @@ class AddStoryActivity : BaseViewModelActivity<AddStoryViewModel, ActivityAddSto
                         val body =
                             MultipartBody.Part.createFormData("photo", file.name, requestFile)
 
-                        viewModel.uploadImage(description, body)
+                        viewModel.uploadImage(description, body, latitude, longitude)
                     }
                 } else {
                     toastShort(getString(R.string.label_image_empty))
@@ -153,4 +179,76 @@ class AddStoryActivity : BaseViewModelActivity<AddStoryViewModel, ActivityAddSto
     private fun hideAnimation() {
         binding.lavAnimations.gone()
     }
+
+    // region location
+
+    private fun getMyLastLocation() {
+        if (checkPermission(Manifest.permission.ACCESS_FINE_LOCATION) &&
+            checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+        ) {
+            fusedLocationClient?.lastLocation?.addOnSuccessListener { location: Location? ->
+                if (location != null) {
+                    latitude = location.latitude
+                    longitude = location.longitude
+                } else {
+                    getMostUpdateLocation()
+                }
+            }
+        } else {
+            requestPermissionLauncher.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                )
+            )
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun getMostUpdateLocation() {
+        val task = fusedLocationClient?.getCurrentLocation(
+            LocationRequest.PRIORITY_HIGH_ACCURACY,
+            cancellationTokenSource.token
+        )
+
+        task?.addOnCompleteListener {
+            val location = it.result
+            if (location != null) {
+                latitude = location.latitude
+                longitude = location.longitude
+            }
+        }
+    }
+
+    private fun checkPermission(permission: String): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this,
+            permission
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            when {
+                permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false -> {
+                    // Precise location access granted.
+                    getMyLastLocation()
+                }
+                permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false -> {
+                    // Only approximate location access granted.
+                    getMyLastLocation()
+                }
+                else -> {
+                    // No location access granted.
+                }
+            }
+        }
+
+    private fun createLocationRequest() {
+
+    }
+
+    // endregion
 }

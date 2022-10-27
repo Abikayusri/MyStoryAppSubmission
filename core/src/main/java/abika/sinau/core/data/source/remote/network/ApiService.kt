@@ -42,6 +42,8 @@ interface ApiService {
     suspend fun postAddStoryAsUser(
         @Part image: MultipartBody.Part,
         @Part ("description") description: RequestBody,
+        @Part ("lat") latitude: Double,
+        @Part ("lon") longitude: Double,
     ): Response<BaseResponseWrapper<Unit>>
 
     @POST("stories/guest")

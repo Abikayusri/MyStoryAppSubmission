@@ -4,6 +4,7 @@ import abika.sinau.core.data.source.remote.RemoteDataSource
 import abika.sinau.core.data.source.remote.request.StoryQuery
 import abika.sinau.core.data.source.remote.response.StoryListResponse
 import abika.sinau.core.domain.usecase.StoryAppUsecase
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -22,12 +23,10 @@ class ListStoryViewModel @Inject constructor(
     private val usecase: StoryAppUsecase,
     private val remoteDataSouce: RemoteDataSource
 ) : ViewModel() {
-    fun getListStoryPaging(
-        location: Double? = 0.0
-    ): Flow<PagingData<StoryListResponse>> {
-        val query = StoryQuery(
-            location = location
-        )
+
+
+    fun getListStoryPaging(): LiveData<PagingData<StoryListResponse>> {
+        val query = StoryQuery()
         return usecase.getListStoryPaging(query).cachedIn(viewModelScope)
     }
 }

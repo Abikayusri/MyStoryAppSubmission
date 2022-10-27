@@ -9,9 +9,11 @@ import abika.sinau.core.data.source.remote.request.StoryQuery
 import abika.sinau.core.data.source.remote.response.LoginResultResponse
 import abika.sinau.core.data.source.remote.response.BaseResponseWrapper
 import abika.sinau.core.data.source.remote.response.StoryListResponse
+import androidx.lifecycle.LiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.liveData
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -33,7 +35,7 @@ class RemoteDataSourceImpl(
         return apiService.postLogin(request)
     }
 
-    override fun getListStoryPaging(query: StoryQuery): Flow<PagingData<StoryListResponse>> {
+    override fun getListStoryPaging(query: StoryQuery): LiveData<PagingData<StoryListResponse>> {
         return Pager(config = PagingConfig(
             pageSize = 10, enablePlaceholders = false
         ), pagingSourceFactory = {
@@ -41,11 +43,16 @@ class RemoteDataSourceImpl(
                 query = query,
                 apiService = apiService
             )
-        }).flow
+        }).liveData
     }
 
-    override suspend fun postAddStoryAsUser(description: RequestBody, image: MultipartBody.Part): Response<BaseResponseWrapper<Unit>> {
-        return apiService.postAddStoryAsUser(image, description)
+    override suspend fun postAddStoryAsUser(
+        description: RequestBody,
+        image: MultipartBody.Part,
+        latitude: Double,
+        longitude: Double
+    ): Response<BaseResponseWrapper<Unit>> {
+        return apiService.postAddStoryAsUser(image, description, latitude, longitude)
     }
 
     override suspend fun postAddStoryAsGuest(request: AddStoryRequest): Response<BaseResponseWrapper<Unit>> {

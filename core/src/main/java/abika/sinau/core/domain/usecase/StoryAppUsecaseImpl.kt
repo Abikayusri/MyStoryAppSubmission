@@ -9,6 +9,7 @@ import abika.sinau.core.data.source.remote.response.LoginResultResponse
 import abika.sinau.core.data.source.remote.response.BaseResponseWrapper
 import abika.sinau.core.data.source.remote.response.StoryListResponse
 import abika.sinau.core.domain.repository.StoryAppRepository
+import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
@@ -29,12 +30,17 @@ class StoryAppUsecaseImpl(
         return repository.postLogin(request)
     }
 
-    override fun getListStoryPaging(query: StoryQuery): Flow<PagingData<StoryListResponse>> {
+    override fun getListStoryPaging(query: StoryQuery): LiveData<PagingData<StoryListResponse>> {
         return repository.getListStoryPaging(query)
     }
 
-    override suspend fun postAddStoryAsUser(description: RequestBody, image: MultipartBody.Part): Resource<BaseResponseWrapper<Unit>> {
-        return repository.postAddStoryAsUser(description, image)
+    override suspend fun postAddStoryAsUser(
+        description: RequestBody,
+        image: MultipartBody.Part,
+        latitude: Double,
+        longitude: Double
+    ): Resource<BaseResponseWrapper<Unit>> {
+        return repository.postAddStoryAsUser(description, image, latitude, longitude)
     }
 
     override suspend fun postAddStoryAsGuest(request: AddStoryRequest): Resource<BaseResponseWrapper<Unit>> {

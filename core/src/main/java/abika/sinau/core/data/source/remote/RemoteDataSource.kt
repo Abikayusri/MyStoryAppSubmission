@@ -4,11 +4,11 @@ import abika.sinau.core.data.source.remote.request.AddStoryRequest
 import abika.sinau.core.data.source.remote.request.LoginRequest
 import abika.sinau.core.data.source.remote.request.RegisterRequest
 import abika.sinau.core.data.source.remote.request.StoryQuery
-import abika.sinau.core.data.source.remote.response.LoginResultResponse
 import abika.sinau.core.data.source.remote.response.BaseResponseWrapper
+import abika.sinau.core.data.source.remote.response.LoginResultResponse
 import abika.sinau.core.data.source.remote.response.StoryListResponse
+import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
-import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -20,7 +20,13 @@ import retrofit2.Response
 interface RemoteDataSource {
     suspend fun postRegister(request: RegisterRequest): Response<BaseResponseWrapper<Unit>>
     suspend fun postLogin(request: LoginRequest): Response<BaseResponseWrapper<LoginResultResponse>>
-    fun getListStoryPaging(query: StoryQuery): Flow<PagingData<StoryListResponse>>
-    suspend fun postAddStoryAsUser(description: RequestBody, image: MultipartBody.Part): Response<BaseResponseWrapper<Unit>>
+    fun getListStoryPaging(query: StoryQuery): LiveData<PagingData<StoryListResponse>>
+    suspend fun postAddStoryAsUser(
+        description: RequestBody,
+        image: MultipartBody.Part,
+        latitude: Double,
+        longitude: Double
+    ): Response<BaseResponseWrapper<Unit>>
+
     suspend fun postAddStoryAsGuest(request: AddStoryRequest): Response<BaseResponseWrapper<Unit>>
 }

@@ -10,7 +10,7 @@ object Dependencies {
         private const val coreKtxVersion = "1.7.0"
         const val coreKtx = "androidx.core:core-ktx:$coreKtxVersion"
 
-        private const val appCompatVersion = "1.4.0"
+        private const val appCompatVersion = "1.5.1"
         const val appCompat = "androidx.appcompat:appcompat:$appCompatVersion"
     }
 
@@ -160,5 +160,11 @@ object Dependencies {
     object Permissions {
         private const val easyPermissionVersion = "3.0.0"
         const val easyPermissions = "pub.devrel:easypermissions:$easyPermissionVersion"
+    }
+    
+    object GMS {
+        private const val gmsVersion = "18.0.0"
+        const val playServiceMaps = "com.google.android.gms:play-services-maps:$gmsVersion"
+        const val playServiceLocation = "com.google.android.gms:play-services-location:$gmsVersion"
     }
 }

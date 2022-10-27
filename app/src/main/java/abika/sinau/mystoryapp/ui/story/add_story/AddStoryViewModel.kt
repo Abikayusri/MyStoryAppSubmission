@@ -26,11 +26,16 @@ class AddStoryViewModel @Inject constructor(
     private val _resultAddStory = MutableLiveData<Resource<BaseResponseWrapper<Unit>>>()
     val resultAddStory: LiveData<Resource<BaseResponseWrapper<Unit>>> get() = _resultAddStory
 
-    fun uploadImage(description: RequestBody, file: MultipartBody.Part) {
+    fun uploadImage(
+        description: RequestBody,
+        file: MultipartBody.Part,
+        latitude: Double,
+        longitude: Double
+    ) {
         viewModelScope.launch {
             _resultAddStory.postValue(Resource.Loading())
             try {
-                val result = usecase.postAddStoryAsUser(description, file)
+                val result = usecase.postAddStoryAsUser(description, file, latitude, longitude)
                 _resultAddStory.postValue(result)
             } catch (error: Exception) {
 
