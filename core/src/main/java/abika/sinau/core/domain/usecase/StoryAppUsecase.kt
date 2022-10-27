@@ -21,12 +21,11 @@ interface StoryAppUsecase {
     suspend fun postRegisterUseCase(request: RegisterRequest): Resource<BaseResponseWrapper<Unit>>
     suspend fun postLoginUseCase(request: LoginRequest): Resource<BaseResponseWrapper<LoginResultResponse>>
     fun getListStoryPaging(query: StoryQuery): LiveData<PagingData<StoryListResponse>>
+    suspend fun getListStory(query: StoryQuery): Resource<BaseResponseWrapper<StoryListResponse>>
     suspend fun postAddStoryAsUser(
         description: RequestBody,
         image: MultipartBody.Part,
         latitude: Double,
         longitude: Double
     ): Resource<BaseResponseWrapper<Unit>>
-
-    suspend fun postAddStoryAsGuest(request: AddStoryRequest): Resource<BaseResponseWrapper<Unit>>
 }

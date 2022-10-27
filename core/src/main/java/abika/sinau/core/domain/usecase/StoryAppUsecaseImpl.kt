@@ -34,6 +34,10 @@ class StoryAppUsecaseImpl(
         return repository.getListStoryPaging(query)
     }
 
+    override suspend fun getListStory(query: StoryQuery): Resource<BaseResponseWrapper<StoryListResponse>> {
+        return repository.getListStory(query)
+    }
+
     override suspend fun postAddStoryAsUser(
         description: RequestBody,
         image: MultipartBody.Part,
@@ -42,9 +46,4 @@ class StoryAppUsecaseImpl(
     ): Resource<BaseResponseWrapper<Unit>> {
         return repository.postAddStoryAsUser(description, image, latitude, longitude)
     }
-
-    override suspend fun postAddStoryAsGuest(request: AddStoryRequest): Resource<BaseResponseWrapper<Unit>> {
-        return repository.postAddStoryAsGuest(request)
-    }
-
 }

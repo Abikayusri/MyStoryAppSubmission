@@ -21,12 +21,11 @@ interface RemoteDataSource {
     suspend fun postRegister(request: RegisterRequest): Response<BaseResponseWrapper<Unit>>
     suspend fun postLogin(request: LoginRequest): Response<BaseResponseWrapper<LoginResultResponse>>
     fun getListStoryPaging(query: StoryQuery): LiveData<PagingData<StoryListResponse>>
+    suspend fun getListStory(query: StoryQuery): Response<BaseResponseWrapper<StoryListResponse>>
     suspend fun postAddStoryAsUser(
         description: RequestBody,
         image: MultipartBody.Part,
         latitude: Double,
         longitude: Double
     ): Response<BaseResponseWrapper<Unit>>
-
-    suspend fun postAddStoryAsGuest(request: AddStoryRequest): Response<BaseResponseWrapper<Unit>>
 }

@@ -38,7 +38,6 @@ class AddStoryViewModel @Inject constructor(
                 val result = usecase.postAddStoryAsUser(description, file, latitude, longitude)
                 _resultAddStory.postValue(result)
             } catch (error: Exception) {
-
                 _resultAddStory.postValue(Resource.Error(error.message.toString()))
             }
         }

@@ -45,10 +45,4 @@ interface ApiService {
         @Part ("lat") latitude: Double,
         @Part ("lon") longitude: Double,
     ): Response<BaseResponseWrapper<Unit>>
-
-    @POST("stories/guest")
-    suspend fun postAddStoryAsGuest(
-        @Body addStoryRequest: AddStoryRequest
-    ): Response<BaseResponseWrapper<Unit>>
-
 }

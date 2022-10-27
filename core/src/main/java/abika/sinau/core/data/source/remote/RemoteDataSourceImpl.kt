@@ -46,6 +46,10 @@ class RemoteDataSourceImpl(
         }).liveData
     }
 
+    override suspend fun getListStory(query: StoryQuery): Response<BaseResponseWrapper<StoryListResponse>> {
+        return apiService.getStoriesPagination(query.toMap())
+    }
+
     override suspend fun postAddStoryAsUser(
         description: RequestBody,
         image: MultipartBody.Part,
@@ -54,9 +58,4 @@ class RemoteDataSourceImpl(
     ): Response<BaseResponseWrapper<Unit>> {
         return apiService.postAddStoryAsUser(image, description, latitude, longitude)
     }
-
-    override suspend fun postAddStoryAsGuest(request: AddStoryRequest): Response<BaseResponseWrapper<Unit>> {
-        return apiService.postAddStoryAsGuest(request)
-    }
-
 }

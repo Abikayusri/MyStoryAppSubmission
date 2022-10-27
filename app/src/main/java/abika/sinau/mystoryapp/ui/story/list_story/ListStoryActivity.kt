@@ -8,6 +8,7 @@ import abika.sinau.core.utils.gone
 import abika.sinau.core.utils.visible
 import abika.sinau.mystoryapp.databinding.ActivityListStoryBinding
 import abika.sinau.mystoryapp.ui.authentication.login.LoginActivity
+import abika.sinau.mystoryapp.ui.maps.MapsActivity
 import abika.sinau.mystoryapp.ui.story.add_story.AddStoryActivity
 import abika.sinau.mystoryapp.ui.story.detail_story.DetailStoryActivity
 import android.app.AlertDialog
@@ -76,6 +77,11 @@ class ListStoryActivity : BaseViewModelActivity<ListStoryViewModel, ActivityList
             ivAppbarLogout.visible()
             ivAppbarLogout.setOnClickListener {
                 showDialogLogout()
+            }
+
+            ivAppbarMaps.visible()
+            ivAppbarMaps.setOnClickListener {
+                startActivity(Intent(this@ListStoryActivity, MapsActivity::class.java))
             }
         }
     }

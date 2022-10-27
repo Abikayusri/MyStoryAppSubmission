@@ -24,7 +24,6 @@ class ListStoryViewModel @Inject constructor(
     private val remoteDataSouce: RemoteDataSource
 ) : ViewModel() {
 
-
     fun getListStoryPaging(): LiveData<PagingData<StoryListResponse>> {
         val query = StoryQuery()
         return usecase.getListStoryPaging(query).cachedIn(viewModelScope)

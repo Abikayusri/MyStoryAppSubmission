@@ -35,6 +35,10 @@ class StoryAppRepositoryImpl(
         return remoteDataSource.getListStoryPaging(query)
     }
 
+    override suspend fun getListStory(query: StoryQuery): Resource<BaseResponseWrapper<StoryListResponse>> {
+        return responseToResources(remoteDataSource.getListStory(query))
+    }
+
     override suspend fun postAddStoryAsUser(
         description: RequestBody,
         image: MultipartBody.Part,
@@ -42,9 +46,5 @@ class StoryAppRepositoryImpl(
         longitude: Double
     ): Resource<BaseResponseWrapper<Unit>> {
         return responseToResources(remoteDataSource.postAddStoryAsUser(description, image, latitude, longitude))
-    }
-
-    override suspend fun postAddStoryAsGuest(request: AddStoryRequest): Resource<BaseResponseWrapper<Unit>> {
-        return responseToResources(remoteDataSource.postAddStoryAsGuest(request))
     }
 }
