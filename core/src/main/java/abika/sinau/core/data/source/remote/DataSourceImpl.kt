@@ -24,10 +24,10 @@ import retrofit2.Response
  * @author by Abika Chairul Yusri on 9/26/2022
  */
 
-class RemoteDataSourceImpl(
+class DataSourceImpl(
     private val apiService: ApiService,
     private val storyDatabase: StoryDatabase
-) : RemoteDataSource {
+) : DataSource {
 
     override suspend fun postRegister(request: RegisterRequest): Response<BaseResponseWrapper<Unit>> {
         return apiService.postRegister(request)
@@ -36,17 +36,6 @@ class RemoteDataSourceImpl(
     override suspend fun postLogin(request: LoginRequest): Response<BaseResponseWrapper<LoginResultResponse>> {
         return apiService.postLogin(request)
     }
-
-//    override fun getListStoryPaging(query: StoryQuery): LiveData<PagingData<StoryListResponse>> {
-//        return Pager(config = PagingConfig(
-//            pageSize = 10, enablePlaceholders = false
-//        ), pagingSourceFactory = {
-//            ListStoryPagingSource(
-//                query = query,
-//                apiService = apiService
-//            )
-//        }).liveData
-//    }
 
     override fun getListStoryPaging(query: StoryQuery): LiveData<PagingData<StoryListResponse>> {
         @OptIn(ExperimentalPagingApi::class)

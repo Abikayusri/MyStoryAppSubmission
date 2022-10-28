@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_list_story"
+        android:id="@+id/rvListStory"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -26,7 +26,7 @@
         tools:listitem="@layout/item_list_story" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add"
+        android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -39,11 +39,12 @@
         app:srcCompat="@drawable/ic_add_white" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lav_animations"
+        android:id="@+id/lavAnimations"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:lottie_autoPlay="true"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/lottie_loading_animation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

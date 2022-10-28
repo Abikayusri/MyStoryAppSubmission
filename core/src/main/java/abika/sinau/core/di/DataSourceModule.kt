@@ -1,8 +1,8 @@
 package abika.sinau.core.di
 
 import abika.sinau.core.data.source.local.db.StoryDatabase
-import abika.sinau.core.data.source.remote.RemoteDataSource
-import abika.sinau.core.data.source.remote.RemoteDataSourceImpl
+import abika.sinau.core.data.source.remote.DataSource
+import abika.sinau.core.data.source.remote.DataSourceImpl
 import abika.sinau.core.data.source.remote.network.ApiService
 import dagger.Module
 import dagger.Provides
@@ -21,7 +21,7 @@ object DataSourceModule {
 
     @Provides
     @Singleton
-    fun provideRemoteDataSource(apiService: ApiService, storyDatabase: StoryDatabase): RemoteDataSource {
-        return RemoteDataSourceImpl(apiService, storyDatabase)
+    fun provideRemoteDataSource(apiService: ApiService, storyDatabase: StoryDatabase): DataSource {
+        return DataSourceImpl(apiService, storyDatabase)
     }
 }

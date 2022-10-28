@@ -1,4 +1,4 @@
-package abika.sinau.mystoryapp.ui.story.list_story
+package abika.sinau.mystoryapp.ui.story.list_story.adapter
 
 import abika.sinau.core.R
 import abika.sinau.core.data.source.remote.response.StoryListResponse

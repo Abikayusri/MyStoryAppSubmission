@@ -88,6 +88,7 @@ class AddStoryActivity : BaseViewModelActivity<AddStoryViewModel, ActivityAddSto
                 is Resource.Success -> {
                     hideAnimation()
                     toastShort(getString(R.string.label_success_create_story))
+                    setResult(RESULT_OK)
                     finish()
                 }
                 is Resource.Error -> {

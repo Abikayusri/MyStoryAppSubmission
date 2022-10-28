@@ -11,9 +11,14 @@ import abika.sinau.mystoryapp.ui.authentication.login.LoginActivity
 import abika.sinau.mystoryapp.ui.maps.MapsActivity
 import abika.sinau.mystoryapp.ui.story.add_story.AddStoryActivity
 import abika.sinau.mystoryapp.ui.story.detail_story.DetailStoryActivity
+import abika.sinau.mystoryapp.ui.story.list_story.adapter.ListStoryAdapter
+import abika.sinau.mystoryapp.ui.story.list_story.adapter.LoadingStateAdapter
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.view.LayoutInflater
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
@@ -29,25 +34,40 @@ class ListStoryActivity : BaseViewModelActivity<ListStoryViewModel, ActivityList
     override val viewModelClass: Class<ListStoryViewModel>
         get() = ListStoryViewModel::class.java
 
-    override fun inflateLayout(layoutInflater: LayoutInflater): ActivityListStoryBinding {
-        return ActivityListStoryBinding.inflate(layoutInflater)
-    }
+    private val successAddStoryResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                getListStoryPaging()
+            }
+        }
 
-    override fun setupObservers(lifecycleOwner: LifecycleOwner, viewModel: ListStoryViewModel) {
+    private fun getListStoryPaging() {
         lifecycleScope.launch {
             viewModel.apply {
-                getListStoryPaging().observe(lifecycleOwner) {
+                getListStoryPaging().observe(this@ListStoryActivity) {
                     storyAdapter.submitData(lifecycle, it)
                 }
             }
         }
     }
 
+    override fun inflateLayout(layoutInflater: LayoutInflater): ActivityListStoryBinding {
+        return ActivityListStoryBinding.inflate(layoutInflater)
+    }
+
+    override fun setupObservers(lifecycleOwner: LifecycleOwner, viewModel: ListStoryViewModel) {
+        getListStoryPaging()
+    }
+
     override fun setupViews() {
         setupToolbar()
 
         binding.apply {
-            rvListStory.adapter = storyAdapter
+            rvListStory.adapter = storyAdapter.withLoadStateFooter(
+                footer = LoadingStateAdapter {
+                    storyAdapter.retry()
+                }
+            )
 
             storyAdapter.setOnItemClickListener(object : ListStoryAdapter.OnClickListener {
                 override fun onClickItem(item: StoryListResponse) {
@@ -59,13 +79,14 @@ class ListStoryActivity : BaseViewModelActivity<ListStoryViewModel, ActivityList
 
             storyAdapter.addLoadStateListener { loadState ->
                 binding.apply {
-                    rvListStory.isVisible = loadState.source.refresh is LoadState.NotLoading
-                    lavAnimations.isVisible = loadState.source.refresh is LoadState.Loading
+                    lavAnimations.isVisible =
+                        loadState.source.refresh is LoadState.Loading && storyAdapter.itemCount <= 0
                 }
             }
 
             fabAdd.setOnClickListener {
-                startActivity(Intent(this@ListStoryActivity, AddStoryActivity::class.java))
+                val intent = Intent(this@ListStoryActivity, AddStoryActivity::class.java)
+                successAddStoryResult.launch(intent)
             }
         }
     }
@@ -100,10 +121,5 @@ class ListStoryActivity : BaseViewModelActivity<ListStoryViewModel, ActivityList
         sessionPrefs.clearUserToken()
         startActivity(Intent(this@ListStoryActivity, LoginActivity::class.java))
         finishAffinity()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        storyAdapter.refresh()
     }
 }

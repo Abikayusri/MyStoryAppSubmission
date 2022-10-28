@@ -1,8 +1,7 @@
 package abika.sinau.core.data.source
 
 import abika.sinau.core.data.Resource
-import abika.sinau.core.data.source.remote.RemoteDataSource
-import abika.sinau.core.data.source.remote.request.AddStoryRequest
+import abika.sinau.core.data.source.remote.DataSource
 import abika.sinau.core.data.source.remote.request.LoginRequest
 import abika.sinau.core.data.source.remote.request.RegisterRequest
 import abika.sinau.core.data.source.remote.request.StoryQuery
@@ -21,22 +20,22 @@ import okhttp3.RequestBody
  * @author by Abika Chairul Yusri on 9/26/2022
  */
 class StoryAppRepositoryImpl(
-    private val remoteDataSource: RemoteDataSource
+    private val dataSource: DataSource
 ) : StoryAppRepository {
     override suspend fun postRegister(request: RegisterRequest): Resource<BaseResponseWrapper<Unit>> {
-        return responseToResources(remoteDataSource.postRegister(request))
+        return responseToResources(dataSource.postRegister(request))
     }
 
     override suspend fun postLogin(request: LoginRequest): Resource<BaseResponseWrapper<LoginResultResponse>> {
-        return responseToResources(remoteDataSource.postLogin(request))
+        return responseToResources(dataSource.postLogin(request))
     }
 
     override fun getListStoryPaging(query: StoryQuery): LiveData<PagingData<StoryListResponse>> {
-        return remoteDataSource.getListStoryPaging(query)
+        return dataSource.getListStoryPaging(query)
     }
 
     override suspend fun getListStory(query: StoryQuery): Resource<BaseResponseWrapper<StoryListResponse>> {
-        return responseToResources(remoteDataSource.getListStory(query))
+        return responseToResources(dataSource.getListStory(query))
     }
 
     override suspend fun postAddStoryAsUser(
@@ -45,6 +44,6 @@ class StoryAppRepositoryImpl(
         latitude: Double,
         longitude: Double
     ): Resource<BaseResponseWrapper<Unit>> {
-        return responseToResources(remoteDataSource.postAddStoryAsUser(description, image, latitude, longitude))
+        return responseToResources(dataSource.postAddStoryAsUser(description, image, latitude, longitude))
     }
 }

@@ -13,7 +13,6 @@ dependencies {
     implementation Dependencies.Okhttp.client
     implementation Dependencies.Okhttp.log
     testImplementation Dependencies.Testing.mockWebServer
-    testImplementation Dependencies.Testing.truth
 
     // ViewModel + LiveData
     implementation Dependencies.Build.lifecycleViewModelKtx
