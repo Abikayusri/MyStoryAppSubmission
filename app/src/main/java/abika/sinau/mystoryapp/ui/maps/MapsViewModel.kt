@@ -27,13 +27,11 @@ class MapsViewModel @Inject constructor(
     val resultListStory: LiveData<Resource<BaseResponseWrapper<StoryListResponse>>> get()= _resultListStory
 
     fun getListStory() {
-        val query = StoryQuery()
-        query.size = 25
-
         viewModelScope.launch {
             _resultListStory.postValue(Resource.Loading())
             try {
-                val result = usecase.getListStory(query)
+                val result: Resource<BaseResponseWrapper<StoryListResponse>> =
+                    usecase.getListStory()
                 _resultListStory.postValue(result)
             } catch (error: Exception) {
                 _resultListStory.postValue(Resource.Error(error.message.toString()))

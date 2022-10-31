@@ -2,8 +2,8 @@ package abika.sinau.mystoryapp.ui.authentication.login
 
 import abika.sinau.core.data.Resource
 import abika.sinau.core.data.source.remote.request.LoginRequest
-import abika.sinau.core.data.source.remote.response.LoginResultResponse
 import abika.sinau.core.data.source.remote.response.BaseResponseWrapper
+import abika.sinau.core.data.source.remote.response.LoginResultResponse
 import abika.sinau.core.domain.usecase.StoryAppUsecase
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -20,9 +20,9 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val usecase: StoryAppUsecase
-): ViewModel() {
+) : ViewModel() {
     private val _resultLogin = MutableLiveData<Resource<BaseResponseWrapper<LoginResultResponse>>>()
-    val resultLogin: LiveData<Resource<BaseResponseWrapper<LoginResultResponse>>> get()= _resultLogin
+    val resultLogin: LiveData<Resource<BaseResponseWrapper<LoginResultResponse>>> get() = _resultLogin
 
     fun loginUser(request: LoginRequest) {
         viewModelScope.launch {

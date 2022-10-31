@@ -1,6 +1,7 @@
 package abika.sinau.mystoryapp.ui.maps
 
 import abika.sinau.core.data.Resource
+import abika.sinau.core.data.source.remote.response.BaseResponseWrapper
 import abika.sinau.core.data.source.remote.response.StoryListResponse
 import abika.sinau.core.utils.base.BaseActivity
 import abika.sinau.core.utils.toastShort
@@ -58,7 +59,7 @@ class MapsActivity : BaseActivity<ActivityMapsBinding>(),
 
     private fun setupObserver() {
         viewModel.apply {
-            resultListStory.observe(this@MapsActivity) { response ->
+            resultListStory.observe(this@MapsActivity) { response: Resource<BaseResponseWrapper<StoryListResponse>> ->
                 when (response) {
                     is Resource.Success -> {
                         response.data?.listStory?.let {

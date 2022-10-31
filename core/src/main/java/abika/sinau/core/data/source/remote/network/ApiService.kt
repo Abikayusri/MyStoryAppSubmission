@@ -1,6 +1,5 @@
 package abika.sinau.core.data.source.remote.network
 
-import abika.sinau.core.data.source.remote.request.AddStoryRequest
 import abika.sinau.core.data.source.remote.request.LoginRequest
 import abika.sinau.core.data.source.remote.request.RegisterRequest
 import abika.sinau.core.data.source.remote.response.BaseResponseWrapper
@@ -11,6 +10,7 @@ import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
@@ -41,8 +41,8 @@ interface ApiService {
     @POST("stories")
     suspend fun postAddStoryAsUser(
         @Part image: MultipartBody.Part,
-        @Part ("description") description: RequestBody,
-        @Part ("lat") latitude: Double,
-        @Part ("lon") longitude: Double,
+        @Part("description") description: RequestBody,
+        @Part("lat") latitude: Double,
+        @Part("lon") longitude: Double,
     ): Response<BaseResponseWrapper<Unit>>
 }

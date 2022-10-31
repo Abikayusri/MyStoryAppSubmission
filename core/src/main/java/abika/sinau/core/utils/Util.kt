@@ -31,14 +31,14 @@ import java.util.*
  * @author by Abika Chairul Yusri on 9/27/2022
  */
 
-fun <RP : Any> responseToResources(response: Response<RP>): Resource<RP> {
-    if (response.isSuccessful) {
+fun <RP : Any?> responseToResources(response: Response<RP>?): Resource<RP> {
+    if (response?.isSuccessful == true) {
         response.body()?.let { result ->
             return Resource.Success(result)
         }
     }
 
-    return Resource.Error(response.message())
+    return Resource.Error(response?.message().toString())
 }
 
 fun Activity.toastShort(message: String) {

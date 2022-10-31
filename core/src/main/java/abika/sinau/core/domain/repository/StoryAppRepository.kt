@@ -1,7 +1,6 @@
 package abika.sinau.core.domain.repository
 
 import abika.sinau.core.data.Resource
-import abika.sinau.core.data.source.remote.request.AddStoryRequest
 import abika.sinau.core.data.source.remote.request.LoginRequest
 import abika.sinau.core.data.source.remote.request.RegisterRequest
 import abika.sinau.core.data.source.remote.request.StoryQuery
@@ -23,7 +22,8 @@ interface StoryAppRepository {
     fun getListStoryPaging(query: StoryQuery): LiveData<PagingData<StoryListResponse>>
     suspend fun getListStory(query: StoryQuery): Resource<BaseResponseWrapper<StoryListResponse>>
     suspend fun postAddStoryAsUser(
-        description: RequestBody, image: MultipartBody.Part,
+        description: RequestBody,
+        image: MultipartBody.Part,
         latitude: Double,
         longitude: Double
     ): Resource<BaseResponseWrapper<Unit>>

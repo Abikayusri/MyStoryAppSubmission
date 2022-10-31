@@ -22,7 +22,6 @@ class ListStoryViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun getListStoryPaging(): LiveData<PagingData<StoryListResponse>> {
-        val query = StoryQuery()
-        return usecase.getListStoryPaging(query).cachedIn(viewModelScope)
+        return usecase.getListStoryPaging().cachedIn(viewModelScope)
     }
 }

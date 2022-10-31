@@ -1,8 +1,8 @@
 package abika.sinau.core.di
 
 import abika.sinau.core.data.source.local.db.StoryDatabase
-import abika.sinau.core.data.source.remote.DataSource
-import abika.sinau.core.data.source.remote.DataSourceImpl
+import abika.sinau.core.data.source.DataSource
+import abika.sinau.core.data.source.DataSourceImpl
 import abika.sinau.core.data.source.remote.network.ApiService
 import dagger.Module
 import dagger.Provides

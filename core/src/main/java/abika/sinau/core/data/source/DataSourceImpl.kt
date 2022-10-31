@@ -1,4 +1,4 @@
-package abika.sinau.core.data.source.remote
+package abika.sinau.core.data.source
 
 import abika.sinau.core.data.source.local.db.StoryDatabase
 import abika.sinau.core.data.source.remote.network.ApiService
@@ -26,7 +26,7 @@ import retrofit2.Response
 
 class DataSourceImpl(
     private val apiService: ApiService,
-    private val storyDatabase: StoryDatabase
+    private val storyDatabase: StoryDatabase? = null
 ) : DataSource {
 
     override suspend fun postRegister(request: RegisterRequest): Response<BaseResponseWrapper<Unit>> {
@@ -43,13 +43,15 @@ class DataSourceImpl(
             config = PagingConfig(
                 pageSize = 5
             ),
-            remoteMediator = ListStoryRemoteMediator(
-                query = query,
-                database = storyDatabase,
-                apiService = apiService
-            ),
+            remoteMediator = storyDatabase?.let {
+                ListStoryRemoteMediator(
+                    query = query,
+                    database = it,
+                    apiService = apiService
+                )
+            },
             pagingSourceFactory = {
-                storyDatabase.storyDao().getAllStory()
+                storyDatabase?.storyDao()?.getAllStory()!!
             },
         ).liveData
     }
@@ -64,6 +66,11 @@ class DataSourceImpl(
         latitude: Double,
         longitude: Double
     ): Response<BaseResponseWrapper<Unit>> {
-        return apiService.postAddStoryAsUser(image, description, latitude, longitude)
+        return apiService.postAddStoryAsUser(
+            image = image,
+            description = description,
+            latitude = latitude,
+            longitude = longitude
+        )
     }
 }

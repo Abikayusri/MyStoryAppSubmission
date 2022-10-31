@@ -1,6 +1,5 @@
-package abika.sinau.core.data.source.remote
+package abika.sinau.core.data.source
 
-import abika.sinau.core.data.source.remote.request.AddStoryRequest
 import abika.sinau.core.data.source.remote.request.LoginRequest
 import abika.sinau.core.data.source.remote.request.RegisterRequest
 import abika.sinau.core.data.source.remote.request.StoryQuery

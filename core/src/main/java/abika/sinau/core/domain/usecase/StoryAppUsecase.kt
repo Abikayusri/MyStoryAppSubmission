@@ -20,8 +20,8 @@ import okhttp3.RequestBody
 interface StoryAppUsecase {
     suspend fun postRegisterUseCase(request: RegisterRequest): Resource<BaseResponseWrapper<Unit>>
     suspend fun postLoginUseCase(request: LoginRequest): Resource<BaseResponseWrapper<LoginResultResponse>>
-    fun getListStoryPaging(query: StoryQuery): LiveData<PagingData<StoryListResponse>>
-    suspend fun getListStory(query: StoryQuery): Resource<BaseResponseWrapper<StoryListResponse>>
+    fun getListStoryPaging(): LiveData<PagingData<StoryListResponse>>
+    suspend fun getListStory(): Resource<BaseResponseWrapper<StoryListResponse>>
     suspend fun postAddStoryAsUser(
         description: RequestBody,
         image: MultipartBody.Part,

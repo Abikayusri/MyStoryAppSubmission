@@ -8,9 +8,9 @@ import com.google.gson.annotations.SerializedName
  */
 data class BaseResponseWrapper<T : Any?>(
     @SerializedName("error")
-    val error: String,
+    val error: String? = null,
     @SerializedName("message")
-    val message: String,
+    val message: String? = null,
     @SerializedName("loginResult")
     val loginResult: T? = null,
     @SerializedName("listStory")

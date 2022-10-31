@@ -1,7 +1,7 @@
 package abika.sinau.core.di
 
 import abika.sinau.core.data.source.StoryAppRepositoryImpl
-import abika.sinau.core.data.source.remote.DataSource
+import abika.sinau.core.data.source.DataSource
 import abika.sinau.core.domain.repository.StoryAppRepository
 import dagger.Module
 import dagger.Provides

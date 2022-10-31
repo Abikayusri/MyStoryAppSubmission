@@ -7,6 +7,7 @@ import abika.sinau.core.utils.StoryConst.TYPE_PASSWORD
 import abika.sinau.core.utils.base.BaseViewModelActivity
 import abika.sinau.core.utils.getTextString
 import abika.sinau.core.utils.gone
+import abika.sinau.core.utils.toastShort
 import abika.sinau.core.utils.visible
 import abika.sinau.mystoryapp.databinding.ActivityLoginBinding
 import abika.sinau.mystoryapp.ui.authentication.register.RegisterActivity
@@ -54,6 +55,7 @@ class LoginActivity :
                     }
                     is Resource.Error -> {
                         hideAnimation()
+                        toastShort("Login Gagal")
                     }
                     is Resource.Loading -> {
                         showAnimation()

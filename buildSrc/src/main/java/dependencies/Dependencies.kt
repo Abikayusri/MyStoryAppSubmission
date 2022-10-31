@@ -91,7 +91,7 @@ object Dependencies {
         private const val junitAndroidExtVersion = "1.1.3"
         const val junitAndroidExt = "androidx.test.ext:junit:$junitAndroidExtVersion"
 
-        private const val coroutinesTestVersion = "1.5.1"
+        private const val coroutinesTestVersion = "1.6.1"
         const val coroutines =
             "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTestVersion"
 
@@ -115,6 +115,12 @@ object Dependencies {
 
         private const val roomVersion = "2.4.3"
         const val roomTesting = "androidx.room:room-testing:$roomVersion"
+
+        private const val mockitoVersion = "3.12.4"
+        const val mockitoCore = "org.mockito:mockito-core:$mockitoVersion"
+        const val mockitoInline = "org.mockito:mockito-inline:$mockitoVersion"
+
+        const val coreTesting = "androidx.arch.core:core-testing:2.1.0"
     }
 
     object Chucker {

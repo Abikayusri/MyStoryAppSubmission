@@ -18,9 +18,24 @@ import androidx.recyclerview.widget.RecyclerView
  * @author by Abika Chairul Yusri on 9/28/2022
  */
 class ListStoryAdapter : PagingDataAdapter<StoryListResponse, ListStoryAdapter.ListStoryViewHolder>(
-    ListStoryDiffUtil
+    DIFF_CALLBACK
 ) {
     private var callbacks: OnClickListener? = null
+
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StoryListResponse>() {
+            override fun areItemsTheSame(
+                oldItem: StoryListResponse,
+                newItem: StoryListResponse
+            ) = oldItem.id == newItem.id
+
+            override fun areContentsTheSame(
+                oldItem: StoryListResponse,
+                newItem: StoryListResponse
+            ) = oldItem == newItem
+
+        }
+    }
 
     object ListStoryDiffUtil : DiffUtil.ItemCallback<StoryListResponse>() {
         override fun areItemsTheSame(

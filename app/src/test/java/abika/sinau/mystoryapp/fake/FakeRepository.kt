@@ -1,6 +1,7 @@
-package abika.sinau.core.data.source
+package abika.sinau.mystoryapp.fake
 
 import abika.sinau.core.data.Resource
+import abika.sinau.core.data.source.DataSource
 import abika.sinau.core.data.source.remote.request.LoginRequest
 import abika.sinau.core.data.source.remote.request.RegisterRequest
 import abika.sinau.core.data.source.remote.request.StoryQuery
@@ -16,25 +17,23 @@ import okhttp3.RequestBody
 
 
 /**
- * @author by Abika Chairul Yusri on 9/26/2022
+ * @author by Abika Chairul Yusri on 10/31/2022
  */
-class StoryAppRepositoryImpl(
-    private val dataSource: DataSource
-) : StoryAppRepository {
+class FakeRepository(private val dataSource: DataSource) : StoryAppRepository {
     override suspend fun postRegister(request: RegisterRequest): Resource<BaseResponseWrapper<Unit>> {
-        return responseToResources(dataSource.postRegister(request))
+        TODO("Not yet implemented")
     }
 
     override suspend fun postLogin(request: LoginRequest): Resource<BaseResponseWrapper<LoginResultResponse>> {
-        return responseToResources(dataSource.postLogin(request))
+        TODO("Not yet implemented")
     }
 
     override fun getListStoryPaging(query: StoryQuery): LiveData<PagingData<StoryListResponse>> {
-        return dataSource.getListStoryPaging(query)
+        TODO("Not yet implemented")
     }
 
     override suspend fun getListStory(query: StoryQuery): Resource<BaseResponseWrapper<StoryListResponse>> {
-        return responseToResources(dataSource.getListStory(query))
+        TODO("Not yet implemented")
     }
 
     override suspend fun postAddStoryAsUser(
@@ -43,6 +42,13 @@ class StoryAppRepositoryImpl(
         latitude: Double,
         longitude: Double
     ): Resource<BaseResponseWrapper<Unit>> {
-        return responseToResources(dataSource.postAddStoryAsUser(description, image, latitude, longitude))
+        return responseToResources(
+            dataSource.postAddStoryAsUser(
+                image = image,
+                description = description,
+                latitude = latitude,
+                longitude = longitude
+            )
+        )
     }
 }

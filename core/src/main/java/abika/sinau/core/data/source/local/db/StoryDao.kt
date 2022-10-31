@@ -18,7 +18,7 @@ interface StoryDao {
     suspend fun insertStory(story: List<StoryListResponse>)
 
     @Query("SELECT * FROM story")
-    fun getAllStory(): PagingSource<Int, StoryListResponse>
+    fun getAllStory(): PagingSource<Int, StoryListResponse>?
 
     @Query("DELETE FROM story")
     suspend fun deleteAll()

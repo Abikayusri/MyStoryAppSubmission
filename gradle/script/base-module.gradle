@@ -54,4 +54,13 @@ dependencies {
 
     // easy permissions
     implementation Dependencies.Permissions.easyPermissions
+
+    // testing
+    testImplementation Dependencies.Testing.mockitoCore
+    testImplementation Dependencies.Testing.mockitoInline
+    testImplementation Dependencies.Testing.coroutines
+    testImplementation Dependencies.Testing.coreTesting
+
+    androidTestImplementation Dependencies.Testing.coroutines
+    androidTestImplementation Dependencies.Testing.coreTesting
 }

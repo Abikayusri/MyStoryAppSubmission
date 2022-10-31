@@ -49,6 +49,8 @@ apply from: rootProject.file('gradle/script/base-module.gradle')
 
 dependencies {
     implementation project(ModulesName.core)
+    testImplementation project(ModulesName.core)
+    androidTestImplementation project(ModulesName.core)
 
     // Location
     implementation Dependencies.GMS.playServiceMaps
