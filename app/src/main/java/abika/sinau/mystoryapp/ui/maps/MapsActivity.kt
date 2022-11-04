@@ -64,6 +64,11 @@ class MapsActivity : BaseActivity<ActivityMapsBinding>(),
                     is Resource.Success -> {
                         response.data?.listStory?.let {
                             if (it.isNotEmpty()) {
+                                it.forEach { story ->
+                                    val latitude = story.lat
+                                    val longitude = story.lon
+                                    Timber.e("Lat: $latitude, Long: $longitude")
+                                }
                                 createMarker(it)
                             }
                         }
@@ -166,8 +171,25 @@ class MapsActivity : BaseActivity<ActivityMapsBinding>(),
 
     private fun createMarker(data: List<StoryListResponse>) {
         data.forEach { response ->
-            val latitude = response.lat ?: 0.0
-            val longitude: Double = response.lon ?: 0.0
+            var latitude = response.lat ?: 0.0
+            val maxLatitude = 90.000000
+            val minLatitude = -90.000000
+
+            if (latitude < minLatitude) {
+                latitude -= minLatitude
+            } else if (latitude > maxLatitude) {
+                latitude += minLatitude
+            }
+
+            var longitude: Double = response.lon ?: 0.0
+            val maxLongitude = 180.000000
+            val minLongitude = -180.000000
+
+            if (longitude < minLongitude) {
+                longitude -= minLongitude
+            } else if (longitude > maxLongitude) {
+                longitude += maxLongitude
+            }
 
             val latLong = LatLng(latitude, longitude)
             val addressName = getAddressName(latitude, longitude)
