@@ -43,7 +43,7 @@ class MapsViewModelTest {
     }
 
     @Test
-    fun `when List Story Should Return Success`() = runBlocking {
+    fun `When List Story Should Return Success`() = runBlocking {
         val dummyStory = DataDummy.generateDummyBaseResponseWrapperStoryListResponse()
         val expectedStory: Resource<BaseResponseWrapper<StoryListResponse>> =
             Resource.Success(dummyStory)
@@ -57,7 +57,7 @@ class MapsViewModelTest {
     }
 
     @Test
-    fun `when List Story Should Return Failed`() = runBlocking {
+    fun `When List Story Should Return Failed`() = runBlocking {
         val expectedStory: Resource<BaseResponseWrapper<StoryListResponse>> =
             Resource.Error("true")
 

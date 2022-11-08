@@ -54,7 +54,7 @@ class StoryAppRepositoryImplTest {
     }
 
     @Test
-    fun `when login should success result`() = runBlocking {
+    fun `When login Should Return Success`() = runBlocking {
         dummyEmail = "katest+1@gmail.com"
         dummyPassword = "string123"
 
@@ -71,7 +71,7 @@ class StoryAppRepositoryImplTest {
     }
 
     @Test
-    fun `when register should success result`() = runBlocking {
+    fun `When register Should Return Success`() = runBlocking {
         dummyName = "katest66"
         dummyEmail = "katest+66@gmail.com"
         dummyPassword = "string1234"
@@ -90,7 +90,7 @@ class StoryAppRepositoryImplTest {
     }
 
     @Test
-    fun `when list story should success result`() = runBlocking {
+    fun `When list Story Should Return Success`() = runBlocking {
         val query = StoryQuery()
 
         val dummyListStory = DataDummy.generateDummyBaseResponseWrapperStoryListResponse()
@@ -101,7 +101,7 @@ class StoryAppRepositoryImplTest {
     }
 
     @Test
-    fun `when add story should success result`() = runBlocking {
+    fun `When Add Story Should Return Success`() = runBlocking {
         val description = "description1"
 
         val file = File("/asset/logo.jpg")

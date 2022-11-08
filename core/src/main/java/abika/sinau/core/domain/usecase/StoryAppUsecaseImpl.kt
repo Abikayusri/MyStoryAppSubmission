@@ -36,6 +36,7 @@ class StoryAppUsecaseImpl(
     override suspend fun getListStory(): Resource<BaseResponseWrapper<StoryListResponse>> {
         val query = StoryQuery()
         query.size = 25
+        query.location = 1
         return repository.getListStory(query)
     }
 

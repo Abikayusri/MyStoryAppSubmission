@@ -56,7 +56,6 @@ class ListStoryRemoteMediator(
             responseData.body()?.listStory?.let { listStory ->
 
                 endOfPaginationReached = listStory.isEmpty()
-//                val endOfPaginationReached: Boolean = listStory.isEmpty()
 
                 database.withTransaction {
                     if (loadType == LoadType.REFRESH) {

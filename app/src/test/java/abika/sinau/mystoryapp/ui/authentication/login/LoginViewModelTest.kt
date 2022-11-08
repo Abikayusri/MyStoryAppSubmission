@@ -47,7 +47,7 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `when Login Should Return Success`() = runBlocking {
+    fun `When Login Should Return Success`() = runBlocking {
         dummyEmail = "katest+1@gmail.com"
         dummyPassword = "string123"
 
@@ -68,7 +68,7 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `when Login Should Return Failed`() = runBlocking {
+    fun `When Login Should Return Failed`() = runBlocking {
         dummyEmail = "katest+1@gmail.com"
         dummyPassword = "string1234567"
 

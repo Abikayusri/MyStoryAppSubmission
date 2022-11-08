@@ -46,7 +46,7 @@ class RegisterViewModelTest {
     }
 
     @Test
-    fun `when Register Should Return Success`() = runBlocking {
+    fun `When Register Should Return Success`() = runBlocking {
         dummyName = "katest66"
         dummyEmail = "katest+66@gmail.com"
         dummyPassword = "string1234"
@@ -68,7 +68,7 @@ class RegisterViewModelTest {
 
 
     @Test
-    fun `when Register Should Return Failed`() = runBlocking {
+    fun `When Register Should Return Failed`() = runBlocking {
         dummyName = "katest1"
         dummyEmail = "katest+1@gmail.com"
         dummyPassword = "string1234"

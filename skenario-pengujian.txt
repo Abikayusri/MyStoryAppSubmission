@@ -1,25 +1,25 @@
 #Login viewmodel
-1. when login should return success
-2. when login should return failed
+1. When Login Should Return Success
+2. When Login Should Return Failed
 
 #Register Viewmodel
-1. when Register Should Return Success
-2. when Register Should Return Failed
+1. When Register Should Return Success
+2. When Register Should Return Failed
 
 #Maps Viewmodel
-1. when List Story Should Return Success
-2. when List Story Should Return Failed
+1. When List Story Should Return Success
+2. When List Story Should Return Failed
 
 #Add Story Viewmodel
-1. when Add Story Should Return Success
+1. When Add Story Should Return Success
 
 #List Story Viewmodel
-1. when get story and return success
+1. When Get Story Should Return Success
 
 #Story App Repository
-1. when login should success result
-2. when register should success result
-3. when list story should success result
-4. when add story should success result
+1. When Login Should Return Success
+2. When Register Should Return Success
+3. When List Story Should Return Success
+4. when Add Story Should Return Success
 
 

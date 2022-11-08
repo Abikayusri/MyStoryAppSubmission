@@ -56,7 +56,7 @@ class AddStoryViewModelTest {
     private val longitude: Double = 123.00123
 
     @Test
-    fun `when Add Story Should Return Success`() = runBlocking {
+    fun `When Add Story Should Return Success`() = runBlocking {
         val dummyStory = DataDummy.generateDummyAddStory()
         val expectedAddStory: Resource<BaseResponseWrapper<Unit>> =
             Resource.Success(dummyStory)
