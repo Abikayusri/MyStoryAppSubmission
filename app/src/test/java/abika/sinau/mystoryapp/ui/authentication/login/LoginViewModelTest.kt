@@ -86,6 +86,5 @@ class LoginViewModelTest {
         val actual = viewModel.resultLogin.getOrAwaitValue()
         Assert.assertNotNull(actual)
         Assert.assertTrue(actual is Resource.Error)
-//        Assert.assertEquals(expected.message, (actual as Resource.Error).message)
     }
 }
