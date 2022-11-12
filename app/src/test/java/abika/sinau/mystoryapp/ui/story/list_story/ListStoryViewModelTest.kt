@@ -50,7 +50,7 @@ class ListStoryViewModelTest {
     }
 
     @Test
-    fun `When Get Story and Return Success`() = runTest {
+    fun `When Get Story Should Not Null and Return Success`() = runTest {
         val dummyStory = DataDummy.generateDummyQuoteResponse()
         val data: PagingData<StoryListResponse> = ListStoryPagingSource.snapshot(dummyStory)
         val expectedStory = MutableLiveData<PagingData<StoryListResponse>>()

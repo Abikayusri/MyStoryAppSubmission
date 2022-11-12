@@ -54,7 +54,7 @@ class StoryAppRepositoryImplTest {
     }
 
     @Test
-    fun `When login Should Return Success`() = runBlocking {
+    fun `When login Should Not Null and Return Success`() = runBlocking {
         dummyEmail = "katest+1@gmail.com"
         dummyPassword = "string123"
 
@@ -67,11 +67,12 @@ class StoryAppRepositoryImplTest {
         val expected = Resource.Success(dummyLogin)
         val actual = repositoryImpl.postLogin(request)
 
+        Assert.assertNotNull(actual)
         Assert.assertEquals(expected.data, actual.data)
     }
 
     @Test
-    fun `When register Should Return Success`() = runBlocking {
+    fun `When register Should Not Null and  Return Success`() = runBlocking {
         dummyName = "katest66"
         dummyEmail = "katest+66@gmail.com"
         dummyPassword = "string1234"
@@ -86,22 +87,24 @@ class StoryAppRepositoryImplTest {
         val expected = Resource.Success(dummyRegister)
         val actual = repositoryImpl.postRegister(request)
 
+        Assert.assertNotNull(actual)
         Assert.assertEquals(expected.data, actual.data)
     }
 
     @Test
-    fun `When list Story Should Return Success`() = runBlocking {
+    fun `When list Story Should Not Null and  Return Success`() = runBlocking {
         val query = StoryQuery()
 
         val dummyListStory = DataDummy.generateDummyBaseResponseWrapperStoryListResponse()
         val expected = Resource.Success(dummyListStory)
         val actual = repositoryImpl.getListStory(query)
 
+        Assert.assertNotNull(actual)
         Assert.assertEquals(expected.data, actual.data)
     }
 
     @Test
-    fun `When Add Story Should Return Success`() = runBlocking {
+    fun `When Add Story Should Not Null and  Return Success`() = runBlocking {
         val description = "description1"
 
         val file = File("/asset/logo.jpg")
@@ -119,6 +122,7 @@ class StoryAppRepositoryImplTest {
             longitude = longitude
         )
 
+        Assert.assertNotNull(actual)
         Assert.assertEquals(expected.data, actual.data)
     }
 }

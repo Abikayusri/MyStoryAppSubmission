@@ -8,9 +8,12 @@ import abika.sinau.mystoryapp.utils.DataDummy
 import abika.sinau.mystoryapp.utils.MainDispatcherRule
 import abika.sinau.mystoryapp.utils.getOrAwaitValue
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import junit.framework.Assert.assertNotNull
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -46,7 +49,7 @@ class RegisterViewModelTest {
     }
 
     @Test
-    fun `When Register Should Return Success`() = runBlocking {
+    fun `When Register Should Not Null and Return Success`() = runBlocking {
         dummyName = "katest66"
         dummyEmail = "katest+66@gmail.com"
         dummyPassword = "string1234"
@@ -63,12 +66,13 @@ class RegisterViewModelTest {
         Mockito.`when`(usecase.postRegisterUseCase(request)).thenReturn(expected)
         viewModel.registerUser(request)
         val actual = viewModel.resultRegister.getOrAwaitValue()
+        assertNotNull(actual)
         assertEquals(expected.data?.error, actual.data?.error)
     }
 
 
     @Test
-    fun `When Register Should Return Failed`() = runBlocking {
+    fun `When Register Should Not Null and Return Failed`() = runBlocking {
         dummyName = "katest1"
         dummyEmail = "katest+1@gmail.com"
         dummyPassword = "string1234"
@@ -85,6 +89,7 @@ class RegisterViewModelTest {
         Mockito.`when`(usecase.postRegisterUseCase(request)).thenReturn(expected)
         viewModel.registerUser(request)
         val actual = viewModel.resultRegister.getOrAwaitValue()
-        assertEquals(expected.message, (actual as Resource.Error).message)
+        assertNotNull(actual)
+        assertTrue(actual is Resource.Error)
     }
 }

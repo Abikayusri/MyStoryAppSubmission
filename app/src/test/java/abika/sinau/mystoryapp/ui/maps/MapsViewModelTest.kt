@@ -43,7 +43,7 @@ class MapsViewModelTest {
     }
 
     @Test
-    fun `When List Story Should Return Success`() = runBlocking {
+    fun `When List Story Should Not Null and Return Success`() = runBlocking {
         val dummyStory = DataDummy.generateDummyBaseResponseWrapperStoryListResponse()
         val expectedStory: Resource<BaseResponseWrapper<StoryListResponse>> =
             Resource.Success(dummyStory)
@@ -53,11 +53,12 @@ class MapsViewModelTest {
         val actual: Resource<BaseResponseWrapper<StoryListResponse>> =
             viewmodel.resultListStory.getOrAwaitValue()
 
+        Assert.assertNotNull(actual)
         Assert.assertEquals(expectedStory.data?.listStory, actual.data?.listStory)
     }
 
     @Test
-    fun `When List Story Should Return Failed`() = runBlocking {
+    fun `When List Story Should Not Null and Return Failed`() = runBlocking {
         val expectedStory: Resource<BaseResponseWrapper<StoryListResponse>> =
             Resource.Error("true")
 
@@ -66,6 +67,7 @@ class MapsViewModelTest {
         val actual: Resource<BaseResponseWrapper<StoryListResponse>> =
             viewmodel.resultListStory.getOrAwaitValue()
 
-        Assert.assertEquals(expectedStory.message, (actual as Resource.Error).message)
+        Assert.assertNotNull(actual)
+        Assert.assertTrue(actual is Resource.Error)
     }
 }
